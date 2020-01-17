@@ -5,16 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
+                <div class="card-header">PANEL GENERAL</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+                    <input type="submit" class="btn btn-light btn-lg btn-block" value="ALUMNOS" onclick="location.href = '{{ route('students') }}'"/>
+                    <input type="submit" class="btn btn-light btn-lg btn-block"value="PROFESOR" onclick="location.href = '{{ route('teachers') }}'"/>
+                    <input type="submit" class="btn btn-light btn-lg btn-block" value="TESTS" {{--onclick="location.href = '{{ route('tests') }}'"--}}/>
+                    <input type="submit" class="btn btn-light btn-lg btn-block" value="RESERVAS" {{--onclick="location.href = '{{ route('tests') }}'"--}}/>
+                    <input type="submit" class="btn btn-light btn-lg btn-block" value="OPCIONES" {{--onclick="location.href = '{{ route('tests') }}'"--}}/>
                 </div>
             </div>
         </div>
