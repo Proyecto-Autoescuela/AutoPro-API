@@ -7,12 +7,12 @@
             <div class="card">
                 <div class="card-header">ALUMNOS</div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-light btn-lg btn-block">BUSCAR</button>
-                    <button type="button" class="btn btn-light btn-lg btn-block">AÑADIR</button>
-                    <button type="button" class="btn btn-light btn-lg btn-block">MODIFICAR</button>
-                    <button type="button" class="btn btn-light btn-lg btn-block">ELIMINAR</button>
-                    <button type="button" class="btn btn-light btn-lg btn-block">OPCIONES</button>
-                    <button type="button" class="btn btn-light btn-lg btn-block">ATRAS</button>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="BUSCAR" onclick="location.href = '{{ route('search') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="AÑADIR" onclick="location.href = '{{ route('home') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="MODIFICAR" onclick="location.href = '{{ route('home') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR" onclick="location.href = '{{ route('home') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="OPCIONES" onclick="location.href = '{{ route('home') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('home') }}'"/>
                 </div>
             </div>
         </div>

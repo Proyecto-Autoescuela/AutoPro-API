@@ -146,4 +146,11 @@ class StudentController extends Controller
         }
         return response()->json($response);
     }
+
+
+
+    //Vistas ADMIN
+    public function search(){
+        return view('search');
+    }
 }

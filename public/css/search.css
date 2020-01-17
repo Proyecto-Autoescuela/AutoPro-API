@@ -1,0 +1,17 @@
+.mygrid{
+    margin: 1rem;
+    display: inline-grid;
+    columns: 3;
+    width: 11rem;
+    height: 12rem;
+}
+
+
+.name{
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.text{
+    font-size: 10px;
+}
