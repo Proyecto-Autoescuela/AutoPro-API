@@ -8,10 +8,9 @@
                 <div class="card-header">ALUMNOS</div>
                 <div class="card-body">
                     <input type="button" class="btn btn-light btn-lg btn-block" value="BUSCAR" onclick="location.href = '{{ route('search') }}'"/>
-                    <input type="button" class="btn btn-light btn-lg btn-block" value="AÑADIR" onclick="location.href = '{{ route('home') }}'"/>
-                    <input type="button" class="btn btn-light btn-lg btn-block" value="MODIFICAR" onclick="location.href = '{{ route('home') }}'"/>
-                    <input type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR" onclick="location.href = '{{ route('home') }}'"/>
-                    <input type="button" class="btn btn-light btn-lg btn-block" value="OPCIONES" onclick="location.href = '{{ route('home') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="AÑADIR" onclick="location.href = '{{ route('add') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="MODIFICAR" onclick="location.href = '{{ route('modify') }}'"/>
+                    <input type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR" onclick="location.href = '{{ route('delete') }}'"/>
                     <input type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('home') }}'"/>
                 </div>
             </div>

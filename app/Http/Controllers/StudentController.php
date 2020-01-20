@@ -151,6 +151,21 @@ class StudentController extends Controller
 
     //Vistas ADMIN
     public function search(){
-        return view('search');
+        return view('searchStudentsView');
+    }
+
+    public function add()
+    {
+        return view('addStudentsView');
+    }
+
+    public function modify()
+    {
+        return view('modifyStudentsView');
+    }
+
+    public function delete()
+    {
+        return view('deleteStudentsView');
     }
 }

@@ -6,6 +6,7 @@
 
 @section('content')
 
+@php( $teachers = \App\Teacher::all())
 @php( $students = \App\Student::all())
 <div class="container">
     <div class="row justify-content-center">
@@ -29,14 +30,16 @@
                                 <blockquote class="blockquote mb-0">
                                     <p class="text">{{$s->email}}</p>
                                     <p class="text">Pass: {{$s->password}}</p>
-                                    <p class="text">Profesor: {{$s->teacher_id}}</p>
+                                    @foreach($teachers as $t)
+                                        <p class="text">Profesor: {{$t->name}}</p>
+                                    @endforeach
                                     <p class="text">Licencia: {{$s->license}}</p>
                                 </blockquote>
                                 </div>
                             </div>
                         </button>
                     @endforeach
-                    <input type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
+                    <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
                 </div>
             </div>
         </div>
