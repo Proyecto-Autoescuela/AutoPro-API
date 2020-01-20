@@ -33,7 +33,7 @@
                         </div>
                         <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_name">
                             @foreach($teachers as $t)
-                                <option>{{$t->id}}. {{$t->name}}</option>
+                                <option>{{$t->name}}</option>
                             @endforeach
                         </select>
                         <div class="form-group mb-2">

@@ -56,7 +56,7 @@ class StudentController extends Controller
         }
         elseif(!$req->teacher_name)
         {
-            $response['error_msg'] = 'Teacher_id is required';
+            $response['error_msg'] = 'Teacher_name is required';
         }
         elseif(!$req->license)
         {
