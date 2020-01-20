@@ -68,7 +68,8 @@ class StudentController extends Controller
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
                 $students->password = $req->input('password');
-                $teacher = Teacher::where('name',$req->teacher_name)->get();
+                $teacher_name = $req->teacher_name;
+                $teacher = Teacher::where('name', $teacher_name)->get();
                 $students->teacher_id = $teacher->id;
                 $students->license = $req->input('license');
                 $students->save();
