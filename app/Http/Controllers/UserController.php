@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
 use Illuminate\Http\Request;
+use App\User;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    public function listAllAdmin(){
-        $admins = Admin::all(['id', 'name', 'email', 'password', 'token']);
-        if(empty($admins)){
-            $admins = array('error_code' => 400, 'error_msg' => 'No hay admins encontrados');
+    public function listAllUser(){
+        $users = User::all(['id', 'name', 'email', 'password']);
+        if(empty($users)){
+            $users = array('error_code' => 400, 'error_msg' => 'No hay users encontrados');
         }else{
-            return response()->json($admins);
+            return response()->json($users);
         }
     }
     
-    public function addAdmin(Request $req)
+    public function addUser(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
-        $admins = new Admin;
+        $users = new User;
 
         if(!$req->name){
             $response['error_msg'] = 'Name es necesario';
@@ -32,18 +32,18 @@ class AdminController extends Controller
         {
             $response['error_msg'] = 'Password es necesario';
         }
-        elseif(!$req->token)
+        elseif(!$req->api_token)
         {
             $response['error_msg'] = 'Token es necesario';
         }
         else
         {
             try{
-                $admins->name = $req->input('name');
-                $admins->email = $req->input('email') ;
-                $admins->password = $req->input('password');
-                $admins->token = $req->input('token');
-                $admins->save();
+                $users->name = $req->input('name');
+                $users->email = $req->input('email') ;
+                $users->password = $req->input('password');
+                $users->token = $req->input('api_token');
+                $users->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
                 }
                 catch(\Exception $e)
@@ -54,11 +54,11 @@ class AdminController extends Controller
         return response()->json($response);
     }
 
-    public function updateAdmin(Request $req,$id)
+    public function updateUser(Request $req,$id)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Admin '.$id.' no encontrado');
-        $admins = Admin::find($id);
-        if(!empty($admins)){
+        $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
+        $users = User::find($id);
+        if(!empty($users)){
             $dataOk = true;
             $error_msg = "";
             if(empty($req->name)){
@@ -96,15 +96,15 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteAdmin($id)
+    public function deleteUser($id)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Admin '.$id.' no encontrado');
-        $teachers = Admin::find($id);
-        if(empty($admins)){
-            $response = array('error_code' => 400, 'error_msg' => "Admin ".$id." no puede ser borrado");
+        $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
+        $teachers = User::find($id);
+        if(empty($users)){
+            $response = array('error_code' => 400, 'error_msg' => "user ".$id." no puede ser borrado");
         }else{
             try{
-                $admins->delete();
+                $users->delete();
                 $response = array('error_code' => 200, 'error_msg' => '');
             }catch(\Exception $e){
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
@@ -113,5 +113,3 @@ class AdminController extends Controller
         return response()->json($response);
     }
 }
-
-
