@@ -42,7 +42,7 @@ class StudentController extends Controller
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
         $students = new Student;
-
+        
         if(!$req->name){
             $response['error_msg'] = 'Name is required';
         }

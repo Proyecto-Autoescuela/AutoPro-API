@@ -20,14 +20,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/students', 'HomeController@students')->name('students');
 Route::get('/home/teachers', 'HomeController@teachers')->name('teachers');
-Route::post('/students/add/test', 'StudentController@addStudent');
 
-
+//Views
 Route::get('/home/students/all', 'StudentController@search')->name('search');
 Route::get('/home/students/add', 'StudentController@add')->name('add');
 Route::get('/home/students/modify', 'StudentController@modify')->name('modify');
 Route::get('/home/students/delete', 'StudentController@delete')->name('delete');
 
 
+//Actions
 Route::get('StudentController@listAllStudent')->name('listStudents');
 Route::post('StudentController@addStudent')->name('addStudent');

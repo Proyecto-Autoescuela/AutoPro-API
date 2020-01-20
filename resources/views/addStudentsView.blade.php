@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">AÑADIR</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url('students/add/test') }}" role="form">
+                     <form method="POST" action="{{ action('StudentController@addStudent') }}" role="form">
                         <div class="form-group mb-2">
                           <p>Nombre: </p>
                         </div>
@@ -31,7 +31,7 @@
                         <div class="form-group mb-2">
                             <p>Profesor: </p>
                         </div>
-                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_id">
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_name">
                             @foreach($teachers as $t)
                                 <option>{{$t->id}}. {{$t->name}}</option>
                             @endforeach
@@ -50,7 +50,7 @@
                             <option>D</option>
                             <option>D+E</option>
                         </select>
-                        <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="AÑADIR"/>
+                        <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="AÑADIR" />
                     </form>
                     <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
                 </div>
