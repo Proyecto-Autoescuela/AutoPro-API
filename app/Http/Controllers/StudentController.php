@@ -24,6 +24,13 @@ class StudentController extends Controller
         return response() -> json($response);
     }
 
+    public function listByMail($email)
+    {
+        $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
+        $response = Student::where('email', $email)->get();
+        return response() -> json($response);
+    }
+
     public function listByLicense($license)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
