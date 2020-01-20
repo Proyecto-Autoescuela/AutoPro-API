@@ -18,22 +18,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //CRUD Estudiantes
-Route::get('/students', 'StudentController@listAllStudent');
-Route::post('/students/add', 'StudentController@addStudent');
-Route::put('/students/update/{id}', 'StudentController@updateStudent');
-Route::delete('/students/delete/{id}', 'StudentController@deleteStudent');
+Route::middleware('auth:api')->get('/students','StudentController@listAllStudent');
+Route::middleware('auth:api')->post('/students/add','StudentController@addStudent');
+Route::middleware('auth:api')->put('/students/update/{id}','StudentController@updateStudent');
+Route::middleware('auth:api')->delete('/students/delete/{id}','StudentController@deleteStudent');
 
 //CRUD Profesores
-Route::get('/teachers', 'TeacherController@listAllTeacher');
-Route::post('/teachers/add', 'TeacherController@addTeacher');
-Route::put('/teachers/update/{id}', 'TeacherController@updateTeacher');
-Route::delete('/teachers/delete/{id}', 'TeacherController@deleteTeacher');
+Route::middleware('auth:api')->get('/teachers','TeacherController@listAllTeacher');
+Route::middleware('auth:api')->post('/teachers/add','TeacherController@addTeacher');
+Route::middleware('auth:api')->put('/teachers/update/{id}','TeacherController@updateTeacher');
+Route::middleware('auth:api')->delete('/teachers/delete/{id}','TeacherController@deleteTeacher');
 
-//CRUD Admin
-Route::get('/admins', 'AdminController@listAllAdmin');
-Route::post('/admins/add', 'AdminController@addAdmin');
-Route::put('/admins/update/{id}', 'AdminController@updateAdmin');
-Route::delete('/admins/delete/{id}', 'AdminController@deleteAdmin');
+//CRUD User
+Route::middleware('auth:api')->get('/users','UserController@listAllUser');
+Route::middleware('auth:api')->post('/users/add','UserController@addUser');
+Route::middleware('auth:api')->put('/users/update/{id}','UserController@updateUser');
+Route::middleware('auth:api')->delete('/users/delete/{id}','UserController@deleteUser');
 
 //Filtros
 Route::get('/students/{$license}', 'StudentController@listByLicense');
