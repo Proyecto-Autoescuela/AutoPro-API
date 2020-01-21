@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@php( $students = \App\Student::all())
 @php( $teachers = \App\Teacher::all())
 <div class="container">
     <div class="row justify-content-center">
@@ -9,12 +10,11 @@
                 <div class="card-header">AÑADIR</div>
                 <div class="card-body">
                      <form method="POST" action="{{ action('StudentController@addStudent') }}" role="form">
-                        {{ csrf_field() }}
                         <div class="form-group mb-2">
                           <p>Nombre: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" class="form-control" placeholder="Nombre" name="name">
+                        <input type="text" class="form-control" placeholder="Nombre" name="name">
                         </div>
                         <div class="form-group mb-2">
                           <p>Correo: </p>
@@ -31,7 +31,7 @@
                         <div class="form-group mb-2">
                             <p>Profesor: </p>
                         </div>
-                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_name">
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_id">
                             @foreach($teachers as $t)
                                 <option>{{$t->name}}</option>
                             @endforeach

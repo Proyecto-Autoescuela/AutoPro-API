@@ -42,9 +42,6 @@ class StudentController extends Controller
     public function addStudent(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
-        return response()->json($response);
-
-        $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
         $students = new Student;
         
         if(!$req->name){
