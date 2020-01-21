@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@php( $students = \App\Student::all())
 @php( $teachers = \App\Teacher::all())
 <div class="container">
     <div class="row justify-content-center">
@@ -10,6 +9,7 @@
                 <div class="card-header">AÑADIR</div>
                 <div class="card-body">
                      <form method="POST" action="{{ action('StudentController@addStudent') }}" role="form">
+                        {{ csrf_field() }}
                         <div class="form-group mb-2">
                           <p>Nombre: </p>
                         </div>

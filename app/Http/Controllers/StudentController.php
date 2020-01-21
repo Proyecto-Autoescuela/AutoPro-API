@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -41,6 +42,9 @@ class StudentController extends Controller
     public function addStudent(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
+        return response()->json($response);
+
+        $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
         $students = new Student;
         
         if(!$req->name){
@@ -54,7 +58,7 @@ class StudentController extends Controller
         {
             $response['error_msg'] = 'Password is required';
         }
-        elseif(!$req->teacher_name)
+        elseif(!$req->teacher_id)
         {
             $response['error_msg'] = 'Teacher_name is required';
         }
@@ -68,9 +72,12 @@ class StudentController extends Controller
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
                 $students->password = $req->input('password');
-                $teacher_name = $req->teacher_name; 
-                $teacher = Teacher::where('name', $teacher_name)->get();
-                $students->teacher_id = $teacher->id;
+                // $teacher_name = $req->input('teacher_name'); 
+                // $teacher = Teacher::where('name', $teacher_name)->get();
+                // $students->teacher_id = $teacher->id;
+                $teacher = Teacher::where('name', $teacher_name)->get(['id']);
+                $students->teacher = $req->input('teacher_id');
+                
                 $students->license = $req->input('license');
                 $students->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
@@ -155,7 +162,6 @@ class StudentController extends Controller
         }
         return response()->json($response);
     }
-
 
 
     //Vistas ADMIN
