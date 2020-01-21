@@ -51,6 +51,7 @@
                             <option>D</option>
                             <option>D+E</option>
                         </select>
+                        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="AÑADIR" />
                     </form>
                     <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
