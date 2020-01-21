@@ -14,32 +14,33 @@
                           <p>Nombre: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" placeholder="Nombre" name="name">
+                        <input type="text" class="form-control" placeholder="Nombre" name="name" required>
                         </div>
                         <div class="form-group mb-2">
                           <p>Correo: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <input type="email" class="form-control" placeholder="Correo" name="email">
+                            <input type="email" class="form-control" placeholder="Correo" name="email" required>
                         </div>
                         <div class="form-group mb-2">
                             <p>Contraseña: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <input type="text" class="form-control" placeholder="Contraseña" name="password">
+                            <input type="text" class="form-control" placeholder="Contraseña" name="password" required>
                         </div>
                         <div class="form-group mb-2">
                             <p>Profesor: </p>
                         </div>
-                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_id">
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="teacher_id" required>
+                            <option value=""></option>
                             @foreach($teachers as $t)
-                                <option>{{$t->name}}</option>
+                                <option value="{{$t->id}}">{{$t->id}} - {{$t->name}}</option>
                             @endforeach
                         </select>
                         <div class="form-group mb-2">
                             <p>Licencia: </p>
                         </div>
-                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="license">
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="license" required>
                             <option>A</option>
                             <option>A1</option>
                             <option>A2</option>

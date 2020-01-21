@@ -57,7 +57,7 @@ class StudentController extends Controller
         }
         elseif(!$req->teacher_id)
         {
-            $response['error_msg'] = 'Teacher_name is required';
+            $response['error_msg'] = 'Teacher_id is required';
         }
         elseif(!$req->license)
         {
@@ -69,18 +69,12 @@ class StudentController extends Controller
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
                 $students->password = $req->input('password');
-                // $teacher_name = $req->input('teacher_name'); 
-                // $teacher = Teacher::where('name', $teacher_name)->get();
-                // $students->teacher_id = $teacher->id;
-                $teacher = Teacher::where('name', $teacher_name)->get(['id']);
-                $students->teacher = $req->input('teacher_id');
-                
+                $students->teacher_id = $req->input('teacher_id');
                 $students->license = $req->input('license');
                 $students->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
-                }
-                catch(\Exception $e)
-                {
+            }
+            catch(\Exception $e){
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }

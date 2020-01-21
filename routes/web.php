@@ -28,6 +28,6 @@ Route::get('/home/students/modify', 'StudentController@modify')->name('modify');
 Route::get('/home/students/delete', 'StudentController@delete')->name('delete');
 
 
-//Actions
-Route::get('StudentController@listAllStudent')->name('listStudents');
-Route::post('StudentController@addStudent')->name('addStudent');
+// //Actions
+// Route::get('StudentController@listAllStudent')->name('listStudents');
+// Route::post('StudentController@addStudent')->name('addStudent');
