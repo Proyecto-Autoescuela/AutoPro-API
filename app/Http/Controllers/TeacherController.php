@@ -106,5 +106,24 @@ class TeacherController extends Controller
         }
         return response()->json($response);
     }
-}
 
+    //Vistas ADMIN
+    public function search(){
+        return view('studentViews/searchStudentsView');
+    }
+
+    public function add()
+    {
+        return view('studentViews/addStudentsView');
+    }
+
+    public function modify()
+    {
+        return view('studentViews/modifyStudentsView');
+    }
+
+    public function delete()
+    {
+        return view('studentViews/deleteStudentsView');
+    }
+}

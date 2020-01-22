@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //CRUD Estudiantes
 Route::middleware('auth:api')->get('/students','StudentController@listAllStudent');
-// Route::middleware('auth:api')->post('/students/add','StudentController@addStudent');
+Route::middleware('auth:api')->post('/students/add','StudentController@addStudent');
 Route::middleware('auth:api')->put('/students/update/{id}','StudentController@updateStudent');
 Route::middleware('auth:api')->delete('/students/delete/{id}','StudentController@deleteStudent');
 
@@ -35,5 +35,5 @@ Route::middleware('auth:api')->post('/users/add','UserController@addUser');
 Route::middleware('auth:api')->put('/users/update/{id}','UserController@updateUser');
 Route::middleware('auth:api')->delete('/users/delete/{id}','UserController@deleteUser');
 
-//Filtros
-Route::get('/students/{$license}', 'StudentController@listByLicense');
+// //Filtros
+// Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
