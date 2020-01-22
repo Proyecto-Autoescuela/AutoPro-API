@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Teacher;
 class TeacherController extends Controller 
 {
+
+    // Listar profesores
     public function listAllTeacher(){
         $teachers = Teacher::all(['id', 'name', 'email', 'password']);
         if(empty($teachers)){
@@ -15,6 +17,7 @@ class TeacherController extends Controller
         }
     }
     
+    // Añadir profesor
     public function addTeacher(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
@@ -48,6 +51,7 @@ class TeacherController extends Controller
         return response()->json($response);
     }
 
+    // Editar profesor
     public function updateTeacher(Request $req,$id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Profesor '.$id.' no encontrado');
@@ -90,6 +94,7 @@ class TeacherController extends Controller
         }
     }
 
+    // Borrar profesor
     public function deleteTeacher($id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Profesor '.$id.' no encontrado');
