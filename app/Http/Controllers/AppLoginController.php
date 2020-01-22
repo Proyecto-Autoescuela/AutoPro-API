@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 class AppLoginController extends Controller
 {
     public function logingApp(Request $req){
-        $students = Student::where('email', $req->email)->get();
-        $student = $students[0];
+        $student = Student::where('email', $req->email)->first();
         if(!empty($student)){
             $pass = hash('sha256', $req->password);
             if($student->password == $pass){
@@ -22,13 +21,10 @@ class AppLoginController extends Controller
             }
         }
         else{
-            $teachers = Teacher::where('email', $req->email)->get();
-            $teacher = $teachers[0];
+            $teacher = Teacher::where('email', $req->email)->first();
             if(!empty($teacher)){
-                echo "1";
-                die;
-                $pass = Hash::make($req->input('password'));
-                if($teacher->password== $pass){
+                $pass = hash('sha256', $req->password);
+                if($teacher->password == $pass){
                     $response = array('error_code' => 200, 'error_msg' => 'Profesor');
                 }
                 else{
