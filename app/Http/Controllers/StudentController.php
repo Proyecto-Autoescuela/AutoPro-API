@@ -13,7 +13,7 @@ class StudentController extends Controller
     // Listar estudiantes
     public function listAllStudent()
     {
-        $students = Student::all(['name', 'email', 'password', 'teacher_id', 'license']);
+        $students = Student::all(['name', 'email', 'teacher_id', 'license']);
         if(empty($students)){
             $students = array('error_code' => 400, 'error_msg' => 'No hay estudiantes encontrados');
         }else{

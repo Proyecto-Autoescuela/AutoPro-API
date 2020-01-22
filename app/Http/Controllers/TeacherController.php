@@ -9,7 +9,7 @@ class TeacherController extends Controller
 
     // Listar profesores
     public function listAllTeacher(){
-        $teachers = Teacher::all(['id', 'name', 'email', 'password']);
+        $teachers = Teacher::all(['id', 'name', 'email']);
         if(empty($teachers)){
             $teachers = array('error_code' => 400, 'error_msg' => 'No hay profesores encontrados');
         }else{

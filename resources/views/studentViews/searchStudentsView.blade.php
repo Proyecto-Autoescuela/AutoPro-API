@@ -29,7 +29,6 @@
                                 <div class="card-body">
                                 <blockquote class="blockquote mb-0">
                                     <p class="text">{{$s->email}}</p>
-                                    <p class="text">Pass: {{$s->password}}</p>
                                     @foreach($teachers as $t)
                                         <p class="text">Profesor: {{$t->name}}</p>
                                     @endforeach
