@@ -97,8 +97,9 @@ class TeacherController extends Controller
     }
 
     // Borrar profesor
-    public function deleteTeacher($id)
+    public function deleteTeacher(Request $req)
     {
+        $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Profesor '.$id.' no encontrado');
         $teachers = Teacher::find($id);
         if(empty($teachers)){
@@ -115,21 +116,21 @@ class TeacherController extends Controller
     }
 
     //Vistas ADMIN
-    public function searchTeachers(){
+    public function search(){
         return view('teacherViews/searchTeachersView');
     }
 
-    public function addTeachers()
+    public function addT()
     {
         return view('teacherViews/addTeachersView');
     }
 
-    public function modifyTeachers()
+    public function modify()
     {
         return view('teacherViews/modifyTeachersView');
     }
 
-    public function deleteTeachers()
+    public function delete()
     {
         return view('teacherViews/deleteTeachersView');
     }
