@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    
+    // Listar estudiantes
     public function listAllStudent()
     {
         $students = Student::all(['name', 'email', 'password', 'teacher_id', 'license']);
@@ -18,6 +20,7 @@ class StudentController extends Controller
         }
     }
 
+    // Buscar por nombre
     public function listByName($name)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$name. ' no encontrado');
@@ -25,6 +28,7 @@ class StudentController extends Controller
         return response() -> json($response);
     }
 
+    // Buscar por email
     public function listByMail($email)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
@@ -32,6 +36,7 @@ class StudentController extends Controller
         return response() -> json($response);
     }
 
+    // Buscar por licencia
     public function listByLicense($license)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
@@ -39,6 +44,7 @@ class StudentController extends Controller
         return response() -> json($response);
     }
 
+    // Añadir estudiante
     public function addStudent(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
@@ -81,6 +87,7 @@ class StudentController extends Controller
         return response()->json($response);
     }
 
+    // Editar estudiante
     public function updateStudent(Request $req,$id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
@@ -137,6 +144,7 @@ class StudentController extends Controller
         }
     }
 
+    // Borrar estudiante
     public function deleteStudent($id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
