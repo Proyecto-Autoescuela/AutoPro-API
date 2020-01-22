@@ -115,22 +115,22 @@ class TeacherController extends Controller
     }
 
     //Vistas ADMIN
-    public function search(){
-        return view('studentViews/searchStudentsView');
+    public function searchTeachers(){
+        return view('teacherViews/searchTeachersView');
     }
 
-    public function add()
+    public function addTeachers()
     {
-        return view('studentViews/addStudentsView');
+        return view('teacherViews/addTeachersView');
     }
 
-    public function modify()
+    public function modifyTeachers()
     {
-        return view('studentViews/modifyStudentsView');
+        return view('teacherViews/modifyTeachersView');
     }
 
-    public function delete()
+    public function deleteTeachers()
     {
-        return view('studentViews/deleteStudentsView');
+        return view('teacherViews/deleteTeachersView');
     }
 }

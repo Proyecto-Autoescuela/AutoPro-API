@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-@php( $teachers = \App\Teacher::all())
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -29,7 +28,7 @@
                         </div>
                         <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="MODIFICAR"/>
                     </form>
-                    <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
+                    <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('teachers') }}'"/>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
                     </select>
                     <p style="margin-left: 1rem"><input type="checkbox"/>  Se que voy a borrar un estudiante</p>
                     <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR"/>
-                    <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
+                    <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('teachers') }}'"/>
                 </div>
             </div>
         </div>

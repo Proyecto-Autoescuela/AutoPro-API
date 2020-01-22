@@ -28,17 +28,12 @@
                                 <div class="card-body">
                                 <blockquote class="blockquote mb-0">
                                     <p class="text">{{$t->email}}</p>
-                                    {{-- <select>
-                                        @foreach($students as $s)
-                                            <option>{{$s->name}}</option>
-                                        @endforeach
-                                    </select> --}}
                                 </blockquote>
                                 </div>
                             </div>
                         </button>
                     @endforeach
-                    <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
+                    <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('teachers') }}'"/>
                 </div>
             </div>
         </div>

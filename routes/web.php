@@ -28,7 +28,14 @@ Route::middleware('auth:web')->get('/home/students/add', 'StudentController@add'
 Route::middleware('auth:web')->get('/home/students/modify', 'StudentController@modify')->name('modify');
 Route::middleware('auth:web')->get('/home/students/delete', 'StudentController@delete')->name('delete');
 
+//Views teachers
+Route::middleware('auth:web')->get('/home/teachers/all', 'TeacherController@searchTeachers')->name('searchTeacher');
+Route::middleware('auth:web')->get('/home/teachers/add', 'TeacherController@addTeachers')->name('addTeacher');
+Route::middleware('auth:web')->get('/home/teachers/modify', 'TeacherController@modifyTeachers')->name('modifyTeacher');
+Route::middleware('auth:web')->get('/home/teachers/delete', 'TeacherController@deleteTeachers')->name('deleteTeacher');
 
+
+Route::middleware('auth:web')->get('/home/student/get','StudentController@listByID');
 Route::middleware('auth:web')->post('home/students/add','StudentController@addStudent');
 Route::middleware('auth:web')->put('home/students/modify','StudentController@updateStudent');
 Route::middleware('auth:web')->delete('home/students/delete','StudentController@deleteStudent');
