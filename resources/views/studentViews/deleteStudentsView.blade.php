@@ -8,13 +8,20 @@
             <div class="card">
                 <div class="card-header">ELIMINAR</div>
                 <div class="card-body">
-                    <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem">
-                        @foreach($students as $s)
-                            <option>{{$s->id}}. {{$s->name}}</option>
-                        @endforeach
-                    </select>
-                    <p style="margin-left: 1rem"><input type="checkbox"/>  Se que voy a borrar un estudiante</p>
-                    <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR"/>
+                    <form method="POST" action="{{ action('StudentController@deleteStudent') }}" role="form">
+                        {{ method_field('DELETE') }}
+                        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="id">
+                            @foreach($students as $s)
+                                <option value="{{$s->id}}">{{$s->id}}. {{$s->name}}  |  {{$s->email}} </option>
+                            @endforeach
+                        </select>
+                        <p style="margin-left: 1rem"><input type="checkbox" required/>  Se que voy a borrar un estudiante</p>
+                        
+                        <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="ELIMINAR"/>
+                    </form>
+                    
+                    
                     <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
                 </div>
             </div>
