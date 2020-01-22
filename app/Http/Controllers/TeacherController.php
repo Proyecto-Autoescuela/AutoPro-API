@@ -38,8 +38,9 @@ class TeacherController extends Controller
         {
             try{
                 $teachers->name = $req->input('name');
-                $teachers->email = $req->input('email') ;
-                $teachers->password = $req->input('password');
+                $teachers->email = $req->input('email');
+                $pass = Hash::make($req->input('password'));
+                $teachers->password = $pass;
                 $teachers->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
                 }
@@ -83,7 +84,8 @@ class TeacherController extends Controller
                 try{
                     $teachers->name = $req->input('name');
                     $teachers->email = $req->input('email') ;
-                    $teachers->password = $req->input('password');
+                    $pass = Hash::make($req->input('password'));
+                    $teachers->password = $pass;
                     $teachers->save();
                     $response = array('error_code' => 200, 'error_msg' => '');
                 }catch(\Exception $e){

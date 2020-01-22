@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
-    
+
     // Listar estudiantes
     public function listAllStudent()
     {
@@ -74,7 +75,8 @@ class StudentController extends Controller
             try{
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
-                $students->password = $req->input('password');
+                $pass = Hash::make($req->input('password'));
+                $students->password = $pass;
                 $students->teacher_id = $req->input('teacher_id');
                 $students->license = $req->input('license');
                 $students->save();
@@ -130,8 +132,9 @@ class StudentController extends Controller
             }else{
                 try{
                     $students->name = $req->input('name');
-                    $students->email = $req->input('email') ;
-                    $students->password = $req->input('password');
+                    $students->email = $req->input('email');
+                    $pass = Hash::make($req->input('password'));
+                    $students->password = $pass;
                     $students->teacher_id = $req->input('teacher_id');
                     $students->license = $req->input('license');
                     $students->save();
@@ -162,6 +165,7 @@ class StudentController extends Controller
         return response()->json($response);
     }
 
+    
 
     //Vistas ADMIN
     public function search(){
