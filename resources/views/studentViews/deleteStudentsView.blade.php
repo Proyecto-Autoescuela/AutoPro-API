@@ -12,6 +12,7 @@
                         {{ method_field('DELETE') }}
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="id">
+                            <option value=""></option>
                             @foreach($students as $s)
                                 <option value="{{$s->id}}">{{$s->id}}. {{$s->name}}  |  {{$s->email}} </option>
                             @endforeach

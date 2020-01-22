@@ -148,8 +148,9 @@ class StudentController extends Controller
     }
 
     // Borrar estudiante
-    public function deleteStudent($id)
+    public function deleteStudent(Request $req)
     {
+        $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
         $students = Student::find($id);
         if(empty($students)){
