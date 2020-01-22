@@ -32,7 +32,7 @@ class StudentController extends Controller
     // Buscar por email
     public function listByMail($email)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
+        $response = array('error_code' => 404, 'error_msg' => 'email ' .$email. ' no encontrada');
         $response = Student::where('email', $email)->get();
         return response() -> json($response);
     }
@@ -164,8 +164,6 @@ class StudentController extends Controller
         }
         return response()->json($response);
     }
-
-    
 
     //Vistas ADMIN
     public function search(){
