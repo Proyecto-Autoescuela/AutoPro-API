@@ -75,7 +75,7 @@ class StudentController extends Controller
             try{
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
-                $pass = Hash::make($req->input('password'));
+                $pass = hash('sha256', $req->password);
                 $students->password = $pass;
                 $students->teacher_id = $req->input('teacher_id');
                 $students->license = $req->input('license');
@@ -133,7 +133,7 @@ class StudentController extends Controller
                 try{
                     $students->name = $req->input('name');
                     $students->email = $req->input('email');
-                    $pass = Hash::make($req->input('password'));
+                    $pass = hash('sha256', $req->password);
                     $students->password = $pass;
                     $students->teacher_id = $req->input('teacher_id');
                     $students->license = $req->input('license');
