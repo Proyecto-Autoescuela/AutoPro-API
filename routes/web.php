@@ -35,13 +35,14 @@ Route::middleware('auth:web')->delete('/home/students/delete','StudentController
 
 
 //Views teachers
-Route::middleware('auth:web')->get('/home/teachers/all', 'TeacherController@search')->name('searchTeacher');
-Route::middleware('auth:web')->get('/home/teachers/add', 'TeacherController@add')->name('addTeacher');
-Route::middleware('auth:web')->get('/home/teachers/modify', 'TeacherController@modify')->name('modifyTeacher');
-Route::middleware('auth:web')->get('/home/teachers/delete', 'TeacherController@delete')->name('deleteT');
+Route::middleware('auth:web')->get('/home/teachers/all', 'TeacherController@searchTeachers')->name('searchTeachers');
+Route::middleware('auth:web')->get('/home/teachers/add', 'TeacherController@addTeachers')->name('addTeachers');
+Route::middleware('auth:web')->get('/home/teachers/modify', 'TeacherController@modifyTeachers')->name('modifyTeachers');
+Route::middleware('auth:web')->get('/home/teachers/delete', 'TeacherController@deleteTeachers')->name('deleteTeachers');
 
-Route::middleware('auth:web')->post('/home/teachers/add', 'TeacherController@addTeachers');
-Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@updateTeachers');
-Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeachers');
+// Rutas funcionalidades teachers
+Route::middleware('auth:web')->post('/home/teachers/add', 'TeacherController@addTeacher');
+Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@updateTeacher');
+Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeacher');
 
 

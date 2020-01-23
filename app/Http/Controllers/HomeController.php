@@ -33,7 +33,7 @@ class HomeController extends Controller
         return view('teachersPanel');
     }
 
-    public function tests(){
-        return view('testsPanel');
-    }
+    // public function tests(){
+    //     return view('testsPanel');
+    // }
 }
