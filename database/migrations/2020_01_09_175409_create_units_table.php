@@ -18,6 +18,7 @@ class CreateUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('unit_url');
+            $table->longText('contentUnit');
             $table->timestamps();
         });
     }
