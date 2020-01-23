@@ -37,5 +37,8 @@ Route::middleware('auth:api')->delete('/users/delete/{id}','UserController@delet
 
 // Login App
 Route::middleware('auth:api')->get('/loginApp','AppLoginController@logingApp');
+
+Route::middleware('auth:api')->post('/unit/add','UnitController@addUnit');
+Route::middleware('auth:api')->put('/unit/update/{id}','UnitController@updateUnit');
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');

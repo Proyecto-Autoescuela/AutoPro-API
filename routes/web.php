@@ -46,5 +46,6 @@ Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@u
 Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeacher');
 
 
-// Rutas funcionalidades teachers 
-Route::post('/home/teachers/add', 'TeacherController@addTeacher');
+// Rutas funcionalidades temas 
+Route::get('/prueba', 'UnitController@listAllUnit');
+Route::get('/prueba/{id}', 'UnitController@listAllUnit');
