@@ -46,6 +46,9 @@ Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@u
 Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeacher');
 
 
-// Rutas funcionalidades temas 
-Route::get('/prueba', 'UnitController@listAllUnit');
-Route::get('/prueba/{id}', 'UnitController@listAllUnit');
+// CRUD Temas
+Route::middleware('auth:web')->get('/home/unit', 'UnitController@listAllUnit');
+Route::middleware('auth:web')->get('/home/unit/{id}', 'UnitController@listAllUnit');
+Route::middleware('auth:web')->post('/home/unit/add','UnitController@addUnit');
+Route::middleware('auth:web')->put('/home/unit/update/{id}','UnitController@updateUnit');
+Route::middleware('auth:web')->delete('/home/unit/delete/{id}','UnitController@deleteUnit');

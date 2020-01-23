@@ -102,17 +102,17 @@ class UnitController extends Controller
         }
     }
 
-    // Borrar estudiante
-    public function deleteStudent(Request $req)
+    // Borrar Temas
+    public function deleteUnit(Request $req)
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
-        $students = Student::find($id);
-        if(empty($students)){
+        $units = Unit::find($id);
+        if(empty($units)){
             $response = array('error_code' => 400, 'error_msg' => "Estudiante ".$id." no puede ser borrado");
         }else{
             try{
-                $students->delete();
+                $units->delete();
                 $response = array('error_code' => 200, 'error_msg' => '');
             }catch(\Exception $e){
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
