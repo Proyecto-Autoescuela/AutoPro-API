@@ -22,14 +22,14 @@ class StudentController extends Controller
         }
     }
 
-    // Buscar por ID
-    public function listByID(Request $req)
-    {
-        $id = $req->id;
-        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Student::where('id', $id)->get();
-        return response() -> json($response);
-    }
+    // // Buscar por ID
+    // public function listByID(Request $req)
+    // {
+    //     $id = $req->id;
+    //     $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
+    //     $response = Student::where('id', $id)->get();
+    //     return response() -> json($response);
+    // }
 
     // Buscar por nombre
     public function listByName()
@@ -51,13 +51,13 @@ class StudentController extends Controller
         return response() -> json($response);
     }
 
-    // Buscar por licencia
-    public function listByLicense($license)
-    {
-        $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
-        $response = Student::where('license', $license)->get();
-        return response() -> json($response);
-    }
+    // // Buscar por licencia
+    // public function listByLicense($license)
+    // {
+    //     $response = array('error_code' => 404, 'error_msg' => 'Licencia ' .$license. ' no encontrada');
+    //     $response = Student::where('license', $license)->get();
+    //     return response() -> json($response);
+    // }
 
     // Añadir estudiante
     public function addStudent(Request $req)
@@ -100,7 +100,7 @@ class StudentController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('StudentViews/addStudentsView');
     }
 
     // Editar estudiante
@@ -177,7 +177,7 @@ class StudentController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('StudentViews/deleteStudentsView');
     }
 
     //Vistas ADMIN
