@@ -38,7 +38,11 @@ Route::middleware('auth:api')->delete('/users/delete/{id}','UserController@delet
 // Login App
 Route::middleware('auth:api')->get('/loginApp','AppLoginController@logingApp');
 
+// CRUD Temas
+Route::middleware('auth:api')->get('/unit', 'UnitController@listAllUnit');
+Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@listAllUnit');
 Route::middleware('auth:api')->post('/unit/add','UnitController@addUnit');
 Route::middleware('auth:api')->put('/unit/update/{id}','UnitController@updateUnit');
+Route::middleware('auth:api')->delete('/unit/delete/{id}','UnitController@deleteUnit');
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
