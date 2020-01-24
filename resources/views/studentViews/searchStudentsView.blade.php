@@ -17,32 +17,47 @@
                     <form action="{{ action('StudentController@listByName') }}" method="GET" role="search">
                         {{ csrf_field() }}
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Introduce el alumno" name="name" aria-describedby="basic-addon2">
+                            <input required type="text" class="form-control" placeholder="Introduce el alumno" name="name" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <input type="submit" class="btn btn-outline-secondary" type="button" value="Buscar"/>
                             </div>
                         </div>
                     </form>
-
-
-                    @foreach($students as $s)
+                    @if(isset($student))
+                        @foreach($student as $response)
                         <button>
                             <div class="card mygrid">
                                 <div class="card-header">
-                                    <h3 class="name">{{$s->name}}</h3>
+                                    <h3 class="name">{{$response->id}}. {{$response->name}}</h3>
+                                </div>
+                                <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="text">{{$response->email}}</p>
+                                    <p class="text">Profesor: {{$response->getTeacherName($response->id)}}</p>
+                                    <p class="text">Licencia: {{$response->license}}</p>
+                                </blockquote>
+                                </div>
+                            </div>
+                        </button>
+                        @endforeach
+                    @else
+                        @foreach($students as $s)
+                        <button>
+                            <div class="card mygrid">
+                                <div class="card-header">
+                                    <h3 class="name">{{$s->id}}. {{$s->name}}</h3>
                                 </div>
                                 <div class="card-body">
                                 <blockquote class="blockquote mb-0">
                                     <p class="text">{{$s->email}}</p>
-                                    @foreach($teachers as $t)
-                                        <p class="text">Profesor: {{$t->name}}</p>
-                                    @endforeach
+                                    <p class="text">Profesor: {{$s->getTeacherName($s->id)}}</p>
                                     <p class="text">Licencia: {{$s->license}}</p>
                                 </blockquote>
                                 </div>
                             </div>
                         </button>
-                    @endforeach
+                        @endforeach
+                    @endif
                     <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('students') }}'"/>
                 </div>
             </div>

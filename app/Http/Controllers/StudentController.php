@@ -36,8 +36,11 @@ class StudentController extends Controller
     {   
         $name = ucfirst(Input::get ('name'));
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$name. ' no encontrado');
-        $response = Student::where('name', $name)->get(['name', 'email', 'teacher_id', 'license']);
-        return response() -> json($response);
+        $response = Student::where('name','LIKE','%'.$name.'%')
+        ->get(['id', 'name', 'email', 'teacher_id', 'license']);
+        if(count($response) > 0)
+            return view('StudentViews/searchStudentsView', ['student' =>$response]);
+        else return view('StudentViews/searchStudentsView')->withMessage('No Details found. Try to search again !');
     }
 
     // Buscar por email
