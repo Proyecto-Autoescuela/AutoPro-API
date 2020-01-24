@@ -29,6 +29,7 @@ Route::middleware('auth:web')->get('/home/students/modify', 'StudentController@m
 Route::middleware('auth:web')->get('/home/students/delete', 'StudentController@delete')->name('delete');
 
 // Rutas funcionalidades students
+Route::middleware('auth:web')->get('/home/students/search', 'StudentController@listByName');
 Route::middleware('auth:web')->post('/home/students/add','StudentController@addStudent');
 Route::middleware('auth:web')->put('/home/students/modify','StudentController@updateStudent');
 Route::middleware('auth:web')->delete('/home/students/delete','StudentController@deleteStudent');

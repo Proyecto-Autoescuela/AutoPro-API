@@ -6,6 +6,7 @@ use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 
 class StudentController extends Controller
 {
@@ -31,10 +32,11 @@ class StudentController extends Controller
     }
 
     // Buscar por nombre
-    public function listByName($name)
-    {
+    public function listByName()
+    {   
+        $name = ucfirst(Input::get ('name'));
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$name. ' no encontrado');
-        $response = Student::where('name', $name)->get();
+        $response = Student::where('name', $name)->get(['name', 'email', 'teacher_id', 'license']);
         return response() -> json($response);
     }
 

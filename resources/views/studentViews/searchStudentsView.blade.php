@@ -14,12 +14,17 @@
             <div class="card">
                 <div class="card-header">BUSCAR</div>
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Introduce el alumno" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                    <form action="{{ action('StudentController@listByName') }}" method="GET" role="search">
+                        {{ csrf_field() }}
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Introduce el alumno" name="name" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-outline-secondary" type="button" value="Buscar"/>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+
+
                     @foreach($students as $s)
                         <button>
                             <div class="card mygrid">
