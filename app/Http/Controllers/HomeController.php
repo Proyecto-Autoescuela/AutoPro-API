@@ -33,6 +33,10 @@ class HomeController extends Controller
         return view('teachersPanel');
     }
 
+    public function admins(){
+        return view('adminsPanel');
+    }
+
     // public function tests(){
     //     return view('testsPanel');
     // }

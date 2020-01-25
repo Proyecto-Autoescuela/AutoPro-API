@@ -4,19 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
     public function listAllUser(){
-        $users = User::all(['id', 'name', 'email', 'password']);
+        $users = User::all(['id', 'name', 'email']);
         if(empty($users)){
             $users = array('error_code' => 400, 'error_msg' => 'No hay users encontrados');
         }else{
             return response()->json($users);
         }
     }
+
+    // Buscar por nombre
+    public function listByName()
+    {   
+        $name = ucfirst(Input::get ('name'));
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$name. ' no encontrado');
+        $response = User::where('name','LIKE','%'.$name.'%')
+        ->get(['id', 'name', 'email']);
+        if(count($response) > 0)
+            return view('adminViews/searchAdminsView', ['admin' => $response]);
+        else return view('adminViews/searchAdminsView')->withMessage('No Details found. Try to search again !');
+    }
     
-    public function addUser(Request $req)
+    public function addAdmin(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
         $users = new User;
@@ -54,7 +67,7 @@ class UserController extends Controller
         return response()->json($response);
     }
 
-    public function updateUser(Request $req,$id)
+    public function updateAdmin(Request $req,$id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
         $users = User::find($id);
@@ -96,7 +109,7 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser($id)
+    public function deleteAdmin($id)
     {
         $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
         $teachers = User::find($id);
@@ -112,4 +125,24 @@ class UserController extends Controller
         }
         return response()->json($response);
     }
+
+        //Vistas ADMIN
+        public function searchAdmins(){
+            return view('adminViews/searchAdminsView');
+        }
+    
+        public function addAdmins()
+        {
+            return view('adminViews/addAdminsView');
+        }
+    
+        public function modifyAdmins()
+        {
+            return view('adminViews/modifyAdminsView');
+        }
+    
+        public function deleteAdmins()
+        {
+            return view('adminViews/deleteAdminsView');
+        }
 }

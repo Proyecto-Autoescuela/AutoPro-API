@@ -14,7 +14,6 @@
                 <div class="card-header">BUSCAR</div>
                 <div class="card-body">
                     <form action="{{ action('TeacherController@listByName') }}" method="GET" role="search">
-                        {{ csrf_field() }}
                         <div class="input-group mb-3">
                             <input required type="text" class="form-control" placeholder="Introduce el profesor" name="name" aria-describedby="basic-addon2">
                             <div class="input-group-append">

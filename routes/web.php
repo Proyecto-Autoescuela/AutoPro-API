@@ -21,6 +21,7 @@ Auth::routes();
 Route::middleware('auth:web')->get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth:web')->get('/home/students', 'HomeController@students')->name('students');
 Route::middleware('auth:web')->get('/home/teachers', 'HomeController@teachers')->name('teachers');
+Route::middleware('auth:web')->get('/home/admins', 'HomeController@admins')->name('admins');
 
 //Views students
 Route::middleware('auth:web')->get('/home/students/all', 'StudentController@search')->name('search');
@@ -47,6 +48,17 @@ Route::middleware('auth:web')->post('/home/teachers/add', 'TeacherController@add
 Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@updateTeacher');
 Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeacher');
 
+//Views admins
+Route::middleware('auth:web')->get('/home/admins/all', 'UserController@searchAdmins')->name('searchAdmins');
+Route::middleware('auth:web')->get('/home/admins/add', 'UserController@addAdmins')->name('addAdmins');
+Route::middleware('auth:web')->get('/home/admins/modify', 'UserController@modifyAdmins')->name('modifyAdmins');
+Route::middleware('auth:web')->get('/home/admins/delete', 'UserController@deleteAdmins')->name('deleteAdmins');
+
+// Rutas funcionalidades teachers
+Route::middleware('auth:web')->get('/home/admins/search', 'UserController@listByName');
+Route::middleware('auth:web')->post('/home/admins/add', 'UserController@addAdmin');
+Route::middleware('auth:web')->put('/home/admins/modify', 'UserController@updateAdmin');
+Route::middleware('auth:web')->delete('/home/admins/delete', 'UserController@deleteAdmin');
 
 // CRUD Temas
 Route::middleware('auth:web')->get('/home/unit', 'UnitController@listAllUnit');
