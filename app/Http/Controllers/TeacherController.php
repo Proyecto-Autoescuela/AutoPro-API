@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Teacher;
+use Illuminate\Support\Facades\Input;
 class TeacherController extends Controller 
 {
 
@@ -15,6 +16,18 @@ class TeacherController extends Controller
         }else{
             return response()->json($teachers);
         }
+    }
+
+    // Buscar por nombre
+    public function listByName()
+    {   
+        $name = ucfirst(Input::get ('name'));
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$name. ' no encontrado');
+        $response = Teacher::where('name','LIKE','%'.$name.'%')
+        ->get(['id', 'name', 'email']);
+        if(count($response) > 0)
+            return view('TeacherViews/searchTeachersView', ['teacher' => $response]);
+        else return view('TeacherViews/searchTeachersView')->withMessage('No Details found. Try to search again !');
     }
     
     // Añadir profesor
@@ -49,14 +62,15 @@ class TeacherController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('TeacherViews/addTeachersView');
     }
 
     // Editar profesor
-    public function updateTeacher(Request $req,$id)
+    public function updateTeacher(Request $req)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Profesor '.$id.' no encontrado');
-        $teachers = Teacher::find($id);
+        $teacher_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Profesor '.$teacher_id.' no encontrado');
+        $teachers = Teacher::find($teacher_id);
         if(!empty($teachers)){
             $dataOk = true;
             $error_msg = "";
@@ -92,7 +106,7 @@ class TeacherController extends Controller
                     $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
                 }
             }
-        return response()->json($response);
+            return view('TeacherViews/modifyTeachersView');
         }
     }
 
@@ -112,7 +126,7 @@ class TeacherController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('teacherViews/deleteTeachersView');
     }
 
     //Vistas ADMIN

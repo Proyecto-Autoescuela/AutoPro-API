@@ -8,9 +8,11 @@
             <div class="card">
                 <div class="card-header">MODIFICAR</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ action('StudentController@updateStudent') }}" role="form">
+                    <form method="POST" action="{{ action('TeacherController@updateTeacher') }}" role="form">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="PUT">
                         <p>Selecciona el profesor que quieres modificar</p>
-                        <select class="form-control" style="max-width: 41rem" name="id" aria-describedby="basic-addon2">
+                        <select class="form-control" style="max-width: 41rem" name="id" aria-describedby="basic-addon2" required>
                             <option value=""></option>
                             @foreach($teachers as $t)
                                 <option value="{{$t->id}}">{{$t->id}}. {{$t->name}} | {{$t->email}}</option>

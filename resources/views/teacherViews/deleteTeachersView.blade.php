@@ -11,13 +11,14 @@
                     <form method="POST" action="{{ action('TeacherController@deleteTeacher') }}" role="form">
                         {{ method_field('DELETE') }}
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
-                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem">
+                        <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="id" required>
+                            <option value=""></option>
                             @foreach($teachers as $t)
-                                <option>{{$t->id}}. {{$t->name}}</option>
+                                <option value="{{$t->id}}">{{$t->id}}. {{$t->name}}  |  {{$t->email}} </option>
                             @endforeach
                         </select>
-                        <p style="margin-left: 1rem"><input type="checkbox"/>  Se que voy a borrar un profesor</p>
-                        <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ELIMINAR"/>
+                        <p style="margin-left: 1rem"><input type="checkbox" required/>  Se que voy a borrar un profesor</p>
+                        <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="ELIMINAR"/>
                     </form>
                     <input style="margin-top: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('teachers') }}'"/>
                 </div>

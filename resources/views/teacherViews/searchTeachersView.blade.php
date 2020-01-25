@@ -13,17 +13,36 @@
             <div class="card">
                 <div class="card-header">BUSCAR</div>
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Introduce el profesor" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                    <form action="{{ action('TeacherController@listByName') }}" method="GET" role="search">
+                        {{ csrf_field() }}
+                        <div class="input-group mb-3">
+                            <input required type="text" class="form-control" placeholder="Introduce el profesor" name="name" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-outline-secondary" type="button" value="Buscar"/>
+                            </div>
                         </div>
-                    </div>
-                    @foreach($teachers as $t)
+                    </form>
+                    @if(isset($teacher))
+                        @foreach($teacher as $response)
                         <button>
                             <div class="card mygrid">
                                 <div class="card-header">
-                                    <h3 class="name">{{$t->name}}</h3>
+                                    <h3 class="name">{{$response->id}}. {{$response->name}}</h3>
+                                </div>
+                                <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="text">{{$response->email}}</p>
+                                </blockquote>
+                                </div>
+                            </div>
+                        </button>
+                        @endforeach
+                    @else
+                        @foreach($teachers as $t)
+                        <button>
+                            <div class="card mygrid">
+                                <div class="card-header">
+                                    <h3 class="name">{{$t->id}}. {{$t->name}}</h3>
                                 </div>
                                 <div class="card-body">
                                 <blockquote class="blockquote mb-0">
@@ -32,7 +51,8 @@
                                 </div>
                             </div>
                         </button>
-                    @endforeach
+                        @endforeach
+                    @endif
                     <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('teachers') }}'"/>
                 </div>
             </div>

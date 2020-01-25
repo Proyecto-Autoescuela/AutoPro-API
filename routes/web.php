@@ -42,6 +42,7 @@ Route::middleware('auth:web')->get('/home/teachers/modify', 'TeacherController@m
 Route::middleware('auth:web')->get('/home/teachers/delete', 'TeacherController@deleteTeachers')->name('deleteTeachers');
 
 // Rutas funcionalidades teachers
+Route::middleware('auth:web')->get('/home/teachers/search', 'TeacherController@listByName');
 Route::middleware('auth:web')->post('/home/teachers/add', 'TeacherController@addTeacher');
 Route::middleware('auth:web')->put('/home/teachers/modify', 'TeacherController@updateTeacher');
 Route::middleware('auth:web')->delete('/home/teachers/delete', 'TeacherController@deleteTeacher');

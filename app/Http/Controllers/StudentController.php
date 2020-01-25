@@ -39,7 +39,7 @@ class StudentController extends Controller
         $response = Student::where('name','LIKE','%'.$name.'%')
         ->get(['id', 'name', 'email', 'teacher_id', 'license']);
         if(count($response) > 0)
-            return view('StudentViews/searchStudentsView', ['student' =>$response]);
+            return view('StudentViews/searchStudentsView', ['student' => $response]);
         else return view('StudentViews/searchStudentsView')->withMessage('No Details found. Try to search again !');
     }
 
@@ -104,10 +104,11 @@ class StudentController extends Controller
     }
 
     // Editar estudiante
-    public function updateStudent(Request $req,$id)
+    public function updateStudent(Request $req)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
-        $students = Student::find($id);
+        $student_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$student_id.' no encontrado');
+        $students = Student::find($student_id);
         if(!empty($students)){
             $dataOk = true;
             $error_msg = "";
@@ -157,7 +158,7 @@ class StudentController extends Controller
                     $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
                 }
             }
-        return response()->json($response);
+        return view('StudentViews/addStudentsView');
         }
     }
 
