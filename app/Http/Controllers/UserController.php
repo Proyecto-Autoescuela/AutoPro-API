@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -45,17 +47,13 @@ class UserController extends Controller
         {
             $response['error_msg'] = 'Password es necesario';
         }
-        elseif(!$req->api_token)
-        {
-            $response['error_msg'] = 'Token es necesario';
-        }
         else
         {
             try{
                 $users->name = $req->input('name');
                 $users->email = $req->input('email') ;
-                $users->password = $req->input('password');
-                $users->token = $req->input('api_token');
+                $users->password = Hash::make($req->password);
+                $users->api_token = Str::random(60);
                 $users->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
                 }
@@ -64,13 +62,14 @@ class UserController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('adminViews/addAdminsView');
     }
 
-    public function updateAdmin(Request $req,$id)
+    public function updateAdmin(Request $req)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
-        $users = User::find($id);
+        $admin_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'user '.$admin_id.' no encontrado');
+        $users = User::find($admin_id);
         if(!empty($users)){
             $dataOk = true;
             $error_msg = "";
@@ -78,43 +77,44 @@ class UserController extends Controller
                 $dataOk = false;
                 $error_msg = "Name no puede estar vacio";
             }else{
-                $students->name = $req->name;
+                $users->name = $req->name;
             }
             if(empty($req->email)){
                 $dataOk = false;
                 $error_msg = "Email no puede estar vacio";
             }else{
-                $students->email = $req->email;
+                $users->email = $req->email;
             }
             if(empty($req->password)){
                 $dataOk = false;
                 $error_msg = "Paswword no puede estar vacio";
             }else{
-                $students->password = $req->password;
+                $users->password = $req->password;
             }
             if(!$dataOk){
                 $response = array('error_code' => 400, 'error_msg' => $error_msg);
             }else{
                 try{
-                    $teachers->name = $req->input('name');
-                    $teachers->email = $req->input('email') ;
-                    $teachers->password = $req->input('password');
-                    $teachers->save();
+                    $users->name = $req->input('name');
+                    $users->email = $req->input('email') ;
+                    $users->password = Hash::make($req->password);
+                    $users->save();
                     $response = array('error_code' => 200, 'error_msg' => '');
                 }catch(\Exception $e){
                     $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
                 }
             }
-        return response()->json($response);
+        return view('adminViews/modifyAdminsView');
         }
     }
 
-    public function deleteAdmin($id)
+    public function deleteAdmin(Request $req)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'user '.$id.' no encontrado');
-        $teachers = User::find($id);
+        $admin_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'user '.$admin_id.' no encontrado');
+        $users = User::find($admin_id);
         if(empty($users)){
-            $response = array('error_code' => 400, 'error_msg' => "user ".$id." no puede ser borrado");
+            $response = array('error_code' => 400, 'error_msg' => "user ".$admin_id." no puede ser borrado");
         }else{
             try{
                 $users->delete();
@@ -123,7 +123,7 @@ class UserController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
+        return view('adminViews/deleteAdminsView');
     }
 
         //Vistas ADMIN

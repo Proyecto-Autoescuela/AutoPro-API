@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-@php( $teachers = \App\Teacher::all())
+@php( $admins = \App\User::all())
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">MODIFICAR</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ action('TeacherController@updateTeacher') }}" role="form">
+                    <form method="POST" action="{{ action('UserController@updateAdmin') }}" role="form">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
-                        <p>Selecciona el profesor que quieres modificar</p>
+                        <p>Selecciona el admin que quieres modificar</p>
                         <select class="form-control" style="max-width: 41rem" name="id" aria-describedby="basic-addon2" required>
                             <option value=""></option>
-                            @foreach($teachers as $t)
-                                <option value="{{$t->id}}">{{$t->id}}. {{$t->name}} | {{$t->email}}</option>
+                            @foreach($admins as $s)
+                                <option value="{{$s->id}}">{{$s->id}}. {{$s->name}} | {{$s->email}}</option>
                             @endforeach
                         </select>
                         <br>
