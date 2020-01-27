@@ -22,6 +22,7 @@ Route::middleware('auth:web')->get('/home', 'HomeController@index')->name('home'
 Route::middleware('auth:web')->get('/home/students', 'HomeController@students')->name('students');
 Route::middleware('auth:web')->get('/home/teachers', 'HomeController@teachers')->name('teachers');
 Route::middleware('auth:web')->get('/home/admins', 'HomeController@admins')->name('admins');
+Route::middleware('auth:web')->get('/home/units', 'HomeController@units')->name('units');
 
 //Views students
 Route::middleware('auth:web')->get('/home/students/all', 'StudentController@search')->name('search');
@@ -59,6 +60,12 @@ Route::middleware('auth:web')->get('/home/admins/search', 'UserController@listBy
 Route::middleware('auth:web')->post('/home/admins/add', 'UserController@addAdmin');
 Route::middleware('auth:web')->put('/home/admins/modify', 'UserController@updateAdmin');
 Route::middleware('auth:web')->delete('/home/admins/delete', 'UserController@deleteAdmin');
+
+//Views units
+Route::middleware('auth:web')->get('/home/units/all', 'UnitController@searchUnits')->name('searchUnits');
+Route::middleware('auth:web')->get('/home/units/add', 'UnitController@addUnits')->name('addUnits');
+Route::middleware('auth:web')->get('/home/units/modify', 'UnitController@modifyUnits')->name('modifyUnits');
+Route::middleware('auth:web')->get('/home/units/delete', 'UnitController@deleteUnits')->name('deleteUnits');
 
 // CRUD Temas
 Route::middleware('auth:web')->get('/home/unit', 'UnitController@listAllUnit');

@@ -60,10 +60,11 @@ class UnitController extends Controller
     }
 
     // Editar temario
-    public function updateUnit(Request $req,$id)
+    public function updateUnit(Request $req)
     {
-        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
-        $units = Unit::find($id);
+        $unit_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$unit_id.' no encontrado');
+        $units = Unit::find($unit_id);
         if(!empty($units)){
             $dataOk = true;
             $error_msg = "";
@@ -119,5 +120,26 @@ class UnitController extends Controller
             }
         }
         return response()->json($response);
+    }
+
+
+     //Vistas ADMIN
+     public function searchUnits(){
+        return view('unitViews/searchUnitsView');
+    }
+
+    public function addUnits()
+    {
+        return view('unitViews/addUnitsView');
+    }
+
+    public function modifyUnits()
+    {
+        return view('unitViews/modifyUnitsView');
+    }
+
+    public function deleteUnits()
+    {
+        return view('unitViews/deleteUnitsView');
     }
 }

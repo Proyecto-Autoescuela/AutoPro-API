@@ -37,6 +37,10 @@ class HomeController extends Controller
         return view('adminsPanel');
     }
 
+    public function units(){
+        return view('unitsPanel');
+    }
+
     // public function tests(){
     //     return view('testsPanel');
     // }
