@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <form action="{{ action('UnitController@listByID') }}" method="GET" role="search">
                         <div class="input-group mb-3">
-                            <input required type="text" class="form-control" placeholder="Introduce el tema" name="name" aria-describedby="basic-addon2">
+                            <input required type="text" class="form-control" placeholder="Introduce número del tema que quieres encontrar" name="id" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <input type="submit" class="btn btn-outline-secondary" type="button" value="Buscar"/>
                             </div>
