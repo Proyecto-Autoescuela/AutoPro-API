@@ -22,7 +22,7 @@ class UnitController extends Controller
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Student::where('id', $id)->get();
+        $response = Unit::where('id', $id)->get();
         return response() -> json($response);
     }
 
