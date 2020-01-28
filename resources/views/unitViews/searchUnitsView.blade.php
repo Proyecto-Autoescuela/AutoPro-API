@@ -31,9 +31,9 @@
                                     {{-- <p class="text">{{$response->unit_url}}</p> --}}
                                 </div>
                                 <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                    <p class="text">{{$response->content_unit}}</p>
-                                </blockquote>
+                                    <blockquote class="blockquote mb-0">
+                                        <p class="text">{{$response->content_unit}}</p>
+                                    </blockquote>
                                 </div>
                             </div>
                         </button>
@@ -42,14 +42,16 @@
                         @foreach($units as $u)
                         <button style="margin-bottom: 1rem">
                             <div class="card mygrid">
-                                <h3 class="name">Tema {{$u->id}}: {{$u->name}}<img style="max-width: 20%" 
-                                    src="https://www.guiadelnino.com/var/guiadelnino.com/storage/images/educacion/dibujar-con-los-ninos/16-dibujos-de-coches-para-colorear/un-coche-de-policia/3324992-5-esl-ES/un-coche-de-policia_w1140.jpg"/></h3>
-                                {{-- <p class="text">{{$response->unit_url}}</p> --}}
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                    <p class="text">{{$u->content_unit}}</p>
-                                </blockquote>
+                                <div class="card-header">
+                                    <h3 class="name">Tema {{$u->id}}: {{$u->name}}<img style="max-width: 20%" 
+                                        src="https://www.guiadelnino.com/var/guiadelnino.com/storage/images/educacion/dibujar-con-los-ninos/16-dibujos-de-coches-para-colorear/un-coche-de-policia/3324992-5-esl-ES/un-coche-de-policia_w1140.jpg"/></h3>
+                                    {{-- <p class="text">{{$response->unit_url}}</p> --}}
+                                </div>
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p class="text">{{$u->content_unit}}</p>
+                                    </blockquote>
+                                </div>
                             </div>
                         </button>
                         @endforeach

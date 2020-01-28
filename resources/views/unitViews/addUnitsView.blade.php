@@ -7,30 +7,24 @@
             <div class="card">
                 <div class="card-header">AÑADIR</div>
                 <div class="card-body">
-                     <form method="POST" action="{{ action('UnitController@addUnit') }}" role="form">
+                     <form method="POST" action="{{ action('UnitController@addUnit') }}" role="form" enctype="multipart/form-data">
                         <div class="form-group mb-2">
                           <p>Titulo: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                        <input type="text" class="form-control" placeholder="Titulo" name="name" required>
+                          <input type="text" class="form-control" placeholder="Titulo" name="name" required>
                         </div>
                         <div class="form-group mb-2">
-                          <p>Imagen: </p>
+                          <p>Imagen:</p><img id="uploadPreview" style="max-width: 250px; display:block; margin:auto;"/>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputGroupFile02">
-                              <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                              <button class="input-group-text" id="">Upload</button>
-                            </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                          <input name="myPhoto" type="file" id="uploadImage" class="form-control-file" accept="image/*" required onchange="PreviewImage();">
                         </div>
                         <div class="form-group mb-2">
                             <p>Texto: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <textarea placeholder="Texto tema..." class="form-control" id="exampleFormControlTextarea1" name="conten_unit"></textarea>
+                            <textarea placeholder="Texto tema..." class="form-control" id="exampleFormControlTextarea1" name="conten_unit" required></textarea>
                         </div>     
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="AÑADIR" />
@@ -42,3 +36,13 @@
     </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+  function PreviewImage() {
+      var oFReader = new FileReader();
+      oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+      oFReader.onload = function (oFREvent) {
+          document.getElementById("uploadPreview").src = oFREvent.target.result;
+      };
+  };
+</script>
