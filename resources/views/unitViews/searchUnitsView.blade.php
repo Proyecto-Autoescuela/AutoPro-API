@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-{{-- @section('styles')
-    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
-@endsection --}}
-
 @section('content')
 
 @php( $units = \App\Unit::all())
@@ -26,9 +22,7 @@
                         <button>
                             <div class="card mygrid">
                                 <div class="card-header">
-                                    <h3 class="name">Tema {{$response->id}}: {{$response->name}}<img style="max-width: 20%" 
-                                        src="https://www.guiadelnino.com/var/guiadelnino.com/storage/images/educacion/dibujar-con-los-ninos/16-dibujos-de-coches-para-colorear/un-coche-de-policia/3324992-5-esl-ES/un-coche-de-policia_w1140.jpg"/></h3>
-                                    {{-- <p class="text">{{$response->unit_url}}</p> --}}
+                                    <h3 class="name">Tema {{$response->id}}: {{$response->name}}<img style="max-width: 70px" src="{{ URL::to('../') }}/storage/app/public/{{$response->unit_url}}"/></h3>
                                 </div>
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0">
@@ -41,15 +35,13 @@
                     @else
                         @foreach($units as $u)
                         <button style="margin-bottom: 1rem">
-                            <div class="card mygrid">
+                            <div class="card mygrid" style="max-width: 42rem">
                                 <div class="card-header">
-                                    <h3 class="name">Tema {{$u->id}}: {{$u->name}}<img style="max-width: 20%" 
-                                        src="https://www.guiadelnino.com/var/guiadelnino.com/storage/images/educacion/dibujar-con-los-ninos/16-dibujos-de-coches-para-colorear/un-coche-de-policia/3324992-5-esl-ES/un-coche-de-policia_w1140.jpg"/></h3>
-                                    {{-- <p class="text">{{$response->unit_url}}</p> --}}
+                                <h3 class="name">Tema {{$u->id}}: {{$u->name}}<img style="max-width: 70px" src="{{ URL::to('../') }}/storage/app/public/{{$u->unit_url}}"/></h3>
                                 </div>
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0">
-                                        <p class="text">{{$u->content_unit}}</p>
+                                        <p class="text"><pre>{{$u->content_unit}}</pre></p>
                                     </blockquote>
                                 </div>
                             </div>

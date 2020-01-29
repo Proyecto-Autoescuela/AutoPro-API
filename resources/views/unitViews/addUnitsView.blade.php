@@ -18,13 +18,13 @@
                           <p>Imagen:</p><img id="uploadPreview" style="max-width: 250px; display:block; margin:auto;"/>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                          <input name="myPhoto" type="file" id="uploadImage" class="form-control-file" accept="image/*" required onchange="PreviewImage();">
+                          <input name="unit_url" type="file" id="uploadImage" class="form-control-file" accept="image/*" required onchange="PreviewImage();">
                         </div>
                         <div class="form-group mb-2">
                             <p>Texto: </p>
                         </div>
                         <div class="form-group mx-sm-3 mb-2">
-                            <textarea placeholder="Texto tema..." class="form-control" id="exampleFormControlTextarea1" name="conten_unit" required></textarea>
+                            <pre><textarea placeholder="Texto tema..." class="form-control" id="exampleFormControlTextarea1" name="content_unit" required></textarea><pre>
                         </div>     
                         <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
                         <input style="margin-top: 1rem" type="submit" class="btn btn-light btn-lg btn-block" value="AÑADIR" />

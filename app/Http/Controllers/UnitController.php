@@ -9,7 +9,7 @@ class UnitController extends Controller
 {
     // Listar temas
     public function listAllUnit(){
-        $units = Unit::all(['id', 'name', 'unit_url']);
+        $units = Unit::all(['id', 'name', 'unit_url', 'content_unit']);
         if(empty($units)){
             $units = array('error_code' => 400, 'error_msg' => 'No hay temas encontrados');
         }else{
@@ -49,7 +49,8 @@ class UnitController extends Controller
         {
             try{
                 $units->name = $req->input('name');
-                $units->unit_url = $req->input('unit_url') ;
+                $ruta = $req->file('unit_url')->store('ImagesUnits');
+                $units->unit_url = $ruta;
                 $units->content_unit = $req->input('content_unit');
                 $units->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
