@@ -55,7 +55,7 @@ Route::middleware('auth:web')->get('/home/admins/add', 'UserController@addAdmins
 Route::middleware('auth:web')->get('/home/admins/modify', 'UserController@modifyAdmins')->name('modifyAdmins');
 Route::middleware('auth:web')->get('/home/admins/delete', 'UserController@deleteAdmins')->name('deleteAdmins');
 
-// Rutas funcionalidades teachers
+// Rutas funcionalidades admins
 Route::middleware('auth:web')->get('/home/admins/search', 'UserController@listByName');
 Route::middleware('auth:web')->post('/home/admins/add', 'UserController@addAdmin');
 Route::middleware('auth:web')->put('/home/admins/modify', 'UserController@updateAdmin');
@@ -67,12 +67,8 @@ Route::middleware('auth:web')->get('/home/units/add', 'UnitController@addUnits')
 Route::middleware('auth:web')->get('/home/units/modify', 'UnitController@modifyUnits')->name('modifyUnits');
 Route::middleware('auth:web')->get('/home/units/delete', 'UnitController@deleteUnits')->name('deleteUnits');
 
-// Rutas funcionalidades teachers
-Route::middleware('auth:web')->get('/home/admins/search', 'UnitController@listByID');
-
-// CRUD Temas
-Route::middleware('auth:web')->get('/home/unit', 'UnitController@listAllUnit');
-Route::middleware('auth:web')->get('/home/unit/{id}', 'UnitController@listAllUnit');
+// Rutas funcionalidades units
+Route::middleware('auth:web')->get('/home/units/search', 'UnitController@listByID');
 Route::middleware('auth:web')->post('/home/unit/add','UnitController@addUnit');
-Route::middleware('auth:web')->put('/home/unit/update/{id}','UnitController@updateUnit');
-Route::middleware('auth:web')->delete('/home/unit/delete/{id}','UnitController@deleteUnit');
+Route::middleware('auth:web')->put('/home/unit/update','UnitController@updateUnit');
+Route::middleware('auth:web')->delete('/home/unit/delete','UnitController@deleteUnit');

@@ -14,7 +14,7 @@
                         <select class="form-control mx-sm-3 mb-2" style="max-width: 41rem" name="id" required>
                             <option value=""></option>
                             @foreach($units as $u)
-                                <option value="{{$u->id}}">{{$u->id}}. {{$u->name}} </option>
+                                <option value="{{$u->id}}">Tema {{$u->id}}: {{$u->name}} </option>
                             @endforeach
                         </select>
                         <p style="margin-left: 1rem"><input type="checkbox" required/>  Se que voy a borrar un tema</p>
