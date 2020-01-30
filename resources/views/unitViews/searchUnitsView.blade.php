@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="card-body">
                                     <blockquote class="blockquote mb-0">
-                                        <p class="text">{{$response->content_unit}}</p>
+                                        <p class="text"><pre>{{$response->content_unit}}</pre></p>
                                     </blockquote>
                                 </div>
                             </div>

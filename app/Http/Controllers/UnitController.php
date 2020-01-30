@@ -94,7 +94,8 @@ class UnitController extends Controller
             }else{
                 try{
                     $units->name = $req->input('name');
-                    $units->unit_url = $req->input('unit_url') ;
+                    $ruta = $req->file('unit_url')->store('ImagesUnits');
+                    $units->unit_url = $ruta;
                     $units->content_unit = $req->input('content_unit');
                     $units->save();
                     $response = array('error_code' => 200, 'error_msg' => '');
@@ -102,7 +103,7 @@ class UnitController extends Controller
                     $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
                 }
             }
-        return response()->json($response);
+            return view('unitViews/updateUnitsView');
         }
     }
 

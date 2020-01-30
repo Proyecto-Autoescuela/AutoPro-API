@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">MODIFICAR</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ action('UnitController@updateUnit') }}" role="form">
+                    <form method="POST" action="{{ action('UnitController@updateUnit') }}" role="form" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
                         <p>Selecciona el tema que quieres modificar</p>
