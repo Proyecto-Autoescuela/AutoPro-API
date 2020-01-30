@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link href="{{ asset('css/searchUnit.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 @php( $units = \App\Unit::all())
@@ -17,6 +21,7 @@
                             </div>
                         </div>
                     </form>
+                    <input style="margin-bottom: 1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('units') }}'"/>
                     @if(isset($unit))
                         @foreach($unit as $response)
                         <button>
@@ -48,7 +53,6 @@
                         </button>
                         @endforeach
                     @endif
-                    <input style="margin-top:1rem" type="button" class="btn btn-light btn-lg btn-block" value="ATRAS" onclick="location.href = '{{ route('units') }}'"/>
                 </div>
             </div>
         </div>

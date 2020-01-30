@@ -36,7 +36,6 @@ Route::middleware('auth:web')->post('/home/students/add','StudentController@addS
 Route::middleware('auth:web')->put('/home/students/modify','StudentController@updateStudent');
 Route::middleware('auth:web')->delete('/home/students/delete','StudentController@deleteStudent');
 
-
 //Views teachers
 Route::middleware('auth:web')->get('/home/teachers/all', 'TeacherController@searchTeachers')->name('searchTeachers');
 Route::middleware('auth:web')->get('/home/teachers/add', 'TeacherController@addTeachers')->name('addTeachers');
