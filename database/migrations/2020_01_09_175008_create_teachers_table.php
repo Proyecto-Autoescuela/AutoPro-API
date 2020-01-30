@@ -16,7 +16,7 @@ class CreateTeachersTable extends Migration
         Schema::dropIfExists('teachers');
         Schema::create('teachers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('email');
             $table->string('password');
             $table->timestamps();
