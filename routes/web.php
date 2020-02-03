@@ -71,3 +71,10 @@ Route::middleware('auth:web')->get('/home/units/search', 'UnitController@listByI
 Route::middleware('auth:web')->post('/home/unit/add','UnitController@addUnit');
 Route::middleware('auth:web')->put('/home/unit/update','UnitController@updateUnit');
 Route::middleware('auth:web')->delete('/home/unit/delete','UnitController@deleteUnit');
+
+// Rutas funcionalidades Lesson
+Route::middleware('auth:web')->get('/unit', 'LessonController@listAllLesson');
+Route::middleware('auth:web')->get('/unit/{id}', 'LessonController@listByID');
+Route::middleware('auth:web')->post('/unit/add','LessonController@addLesson');
+Route::middleware('auth:web')->put('/unit/update/{id}','UnitController@updateLesson');
+Route::middleware('auth:web')->delete('/unit/delete/{id}','LessonController@deleteLesson');
