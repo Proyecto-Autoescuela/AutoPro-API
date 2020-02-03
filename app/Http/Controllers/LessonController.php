@@ -27,7 +27,7 @@ class LessonController extends Controller
     }
 
     // Añadir Temario
-    public function addUnit(Request $req)
+    public function addLesson(Request $req)
     {
         $response = array('error_code' => 400, 'error_msg' => 'Error inserting info');
         $units = new Lesson;
@@ -50,7 +50,7 @@ class LessonController extends Controller
     }
 
     // Editar temario
-    public function updateUnit(Request $req)
+    public function updateLesson(Request $req)
     {
         $unit_id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$unit_id.' no encontrado');
@@ -80,7 +80,7 @@ class LessonController extends Controller
     }
 
     // Borrar Temas
-    public function deleteUnit(Request $req)
+    public function deleteLesson(Request $req)
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');

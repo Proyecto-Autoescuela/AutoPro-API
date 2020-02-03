@@ -40,9 +40,16 @@ Route::middleware('auth:api')->get('/loginApp','AppLoginController@logingApp');
 
 // CRUD Temas
 Route::middleware('auth:api')->get('/unit', 'UnitController@listAllUnit');
-Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@listAllUnit');
+Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@listByID');
 Route::middleware('auth:api')->post('/unit/add','UnitController@addUnit');
 Route::middleware('auth:api')->put('/unit/update/{id}','UnitController@updateUnit');
 Route::middleware('auth:api')->delete('/unit/delete/{id}','UnitController@deleteUnit');
+
+// CRUD Lesson
+Route::middleware('auth:api')->get('/unit', 'LessonController@listAllLesson');
+Route::middleware('auth:api')->get('/unit/{id}', 'LessonController@listByID');
+Route::middleware('auth:api')->post('/unit/add','LessonController@addLesson');
+Route::middleware('auth:api')->put('/unit/update/{id}','UnitController@updateLesson');
+Route::middleware('auth:api')->delete('/unit/delete/{id}','LessonController@deleteLesson');
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
