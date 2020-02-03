@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([ 'register' => false ]);
 
 //Views menus
 Route::middleware('auth:web')->get('/home', 'HomeController@index')->name('home');
