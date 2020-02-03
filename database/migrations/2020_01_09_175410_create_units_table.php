@@ -18,7 +18,7 @@ class CreateUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('lesson_id');
-            $table->foreign('lesson_id')->references('id')->on('lesson');
+            $table->foreign('lesson_id')->references('id')->on('lessons');
             $table->string('unit_url');
             $table->longText('content_unit');
             $table->timestamps();
