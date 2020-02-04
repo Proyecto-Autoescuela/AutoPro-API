@@ -96,7 +96,7 @@ class UnitController extends Controller
             }
             if(empty($req->lesson_id)){
                 $dataOk = false;
-                $error_msg = "lesson_id can't be empty";
+                $error_msg = "content_unit can't be empty";
             }else{
                 $units->lesson_id = $req->lesson_id;
             }

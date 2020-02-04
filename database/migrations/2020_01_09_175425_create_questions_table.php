@@ -21,8 +21,8 @@ class CreateQuestionsTable extends Migration
             $table->string('correct_answer');
             $table->string('bad_answer');
             $table->string('bad_answer2');
-            $table->unsignedBigInteger('unit_id');
-            $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger('lesson_id');
+            $table->foreign('lesson_id')->references('id')->on('lessons');
             $table->timestamps();
         });
     }

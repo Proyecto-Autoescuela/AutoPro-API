@@ -78,3 +78,5 @@ Route::middleware('auth:web')->get('/unit/{id}', 'LessonController@listByID');
 Route::middleware('auth:web')->post('/unit/add','LessonController@addLesson');
 Route::middleware('auth:web')->put('/unit/update/{id}','UnitController@updateLesson');
 Route::middleware('auth:web')->delete('/unit/delete/{id}','LessonController@deleteLesson');
+
+Route::get('prueba', 'TestController@generateTest');

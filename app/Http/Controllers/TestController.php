@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Test;
 use App\Question;
+use Illuminate\Support\Arr;
 
 class TestController extends Controller
 {
@@ -22,16 +23,21 @@ class TestController extends Controller
         $response = Lesson::where('id', $student_id)->get();
         return response()->json($response);
     }
+
+    // Generador de tests
     public function generateTest(){
-        $question = Question::all();
+        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','correct_answer','bad_answer','bad_answer2','lesson_id']);
+        
         if(empty($question)){
-            $question = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
+            $response = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
         }else{
-            $numbers;
-            for ($i=0; $i < 10; $i++) { 
-                $number = random_int( 0,count($question));
+            $questions[0] = $question[0];
+            for ($i=1; $i <10 ; $i++) {     
+                array_push($questions,$question[$i]);
             }
-                
+            $response = $questions;
+            
         }
+        return response()->json($response);
     }
 }
