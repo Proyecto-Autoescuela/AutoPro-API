@@ -8,9 +8,9 @@ use App\Lesson;
 class LessonController extends Controller
 {
     public function listAllLessons(){
-        $lessons = Lesson::all(['id', 'name', 'unit_id']);
+        $lessons = Lesson::all(['id', 'name']);
         if(empty($lessons)){
-            $lessons = array('error_code' => 400, 'error_msg' => 'No hay temas encontrados');
+            $lessons = array('error_code' => 400, 'error_msg' => 'No hay lessons encontrados');
         }else{
             return response()->json($lessons);
         }

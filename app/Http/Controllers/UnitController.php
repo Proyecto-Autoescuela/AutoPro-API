@@ -9,7 +9,7 @@ class UnitController extends Controller
 {
     // Listar temas
     public function listAllUnit(){
-        $units = Unit::all(['id', 'name', 'unit_url', 'content_unit']);
+        $units = Unit::all(['id', 'name', 'unit_url', 'content_unit', 'unit_id']);
         if(empty($units)){
             $units = array('error_code' => 400, 'error_msg' => 'No hay temas encontrados');
         }else{
