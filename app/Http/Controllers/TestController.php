@@ -26,14 +26,17 @@ class TestController extends Controller
 
     // Generador de tests
     public function generateTest(){
-        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','correct_answer','bad_answer','bad_answer2','lesson_id']);
+        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','answer_a','answer_b','answer_c','correct_answer','lesson_id']);
         
         if(empty($question)){
             $response = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
         }else{
             $questions[0] = $question[0];
-            for ($i=1; $i <10 ; $i++) {     
-                array_push($questions,$question[$i]);
+            for ($i=1; $i <10 ; $i++){
+                if(!empty($question[$i])){
+                    array_push($questions,$question[$i]);
+                } 
+                
             }
             $response = $questions;
             

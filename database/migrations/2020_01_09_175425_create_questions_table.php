@@ -18,9 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('photo_url');
             $table->string('text');
-            $table->string('correct_answer');
-            $table->string('bad_answer');
-            $table->string('bad_answer2');
+            $table->string('answer_a');
+            $table->string('answer_b');
+            $table->string('answer_c');
+            $table->enum('correct_answer',['answer_a', 'answer_b', 'answer_c']);
             $table->unsignedBigInteger('lesson_id');
             $table->foreign('lesson_id')->references('id')->on('lessons');
             $table->timestamps();
