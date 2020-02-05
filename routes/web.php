@@ -62,7 +62,8 @@ Route::middleware('auth:web')->delete('/home/admins/delete', 'UserController@del
 
 //Views units
 Route::middleware('auth:web')->get('/home/units/all', 'UnitController@searchUnits')->name('searchUnits');
-Route::middleware('auth:web')->get('/home/units/add', 'UnitController@addUnits')->name('addUnits');
+Route::middleware('auth:web')->get('/home/units/addUnits', 'UnitController@addUnits')->name('addUnits');
+Route::middleware('auth:web')->get('/home/units/addLessons', 'UnitController@addLessons')->name('addLessons');
 Route::middleware('auth:web')->get('/home/units/modify', 'UnitController@modifyUnits')->name('modifyUnits');
 Route::middleware('auth:web')->get('/home/units/delete', 'UnitController@deleteUnits')->name('deleteUnits');
 

@@ -149,6 +149,11 @@ class UnitController extends Controller
         return view('unitViews/addUnitsView');
     }
 
+    public function addLessons()
+    {
+        return view('unitViews/addLessonsView');
+    }
+
     public function modifyUnits()
     {
         return view('unitViews/modifyUnitsView');

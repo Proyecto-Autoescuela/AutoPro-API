@@ -8,7 +8,7 @@ use App\Lesson;
 class LessonController extends Controller
 {
     public function listAllLessons(){
-        $lessons = Lesson::all(['id', 'name']);
+        $lessons = Lesson::all(['id', 'name', 'lesson_url']);
         if(empty($lessons)){
             $lessons = array('error_code' => 400, 'error_msg' => 'No hay lessons encontrados');
         }else{
@@ -35,10 +35,16 @@ class LessonController extends Controller
         if(!$req->name){
             $response['error_msg'] = 'Name is required';
         }
+        elseif(!$req->lesson_url)
+        {
+            $response['error_msg'] = 'lesson_url is required';
+        }
         else
         {
             try{
                 $units->name = $req->input('name');
+                $ruta = $req->file('unit_url')->store('ImagesLessons');
+                $units->unit_url = $ruta;
                 $units->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
             }
