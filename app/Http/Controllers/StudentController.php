@@ -151,8 +151,11 @@ class StudentController extends Controller
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$id.' no encontrado');
         $students = Student::find($id);
+        $tests = Test::where('id', $id)->get();
         if(empty($students)){
             $response = array('error_code' => 400, 'error_msg' => "Estudiante ".$id." no puede ser borrado");
+        }elseif (emty($tests)) {
+            return redirect()->action('TestController@deleteForStudent',['id' => $id] , ['ok' => "true"]);
         }else{
             try{
                 $students->delete();

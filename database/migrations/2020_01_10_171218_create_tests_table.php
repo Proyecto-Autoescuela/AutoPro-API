@@ -20,6 +20,8 @@ class CreateTestsTable extends Migration
             $table->integer('calification');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');
+            $table->unsignedBigInteger('lesson_id');
+            $table->foreign('lesson_id')->references('id')->on('lessons');
             $table->timestamps();
         });
     }
