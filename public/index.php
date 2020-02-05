@@ -1,6 +1,6 @@
 <?php
 
-// echo hash('sha256', 'NUMERO A PONER');
+// echo hash('sha256', '24');
 // die();
 /**
  * Laravel - A PHP Framework For Web Artisans
