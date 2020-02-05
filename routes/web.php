@@ -81,3 +81,4 @@ Route::middleware('auth:web')->put('/unit/update/{id}','UnitController@updateLes
 Route::middleware('auth:web')->delete('/unit/delete/{id}','LessonController@deleteLesson');
 
 Route::get('prueba', 'TestController@generateTest');
+Route::get('prueba2', 'TestController@listForPass');
