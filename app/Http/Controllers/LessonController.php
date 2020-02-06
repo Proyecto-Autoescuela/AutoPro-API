@@ -26,6 +26,14 @@ class LessonController extends Controller
         else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
     }
 
+    public function findByID(Request $req)
+    {
+        $id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
+        $response = Lesson::where('id', $id)->first();
+        return response()->json($response);
+    }
+
     // Añadir Temario
     public function addLesson(Request $req)
     {
