@@ -65,8 +65,7 @@ class UnitController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return response()->json($response);
-        // return view('unitViews/addUnitsView');
+        return view('unitViews/addUnitsView');
     }
 
     // Editar temario
