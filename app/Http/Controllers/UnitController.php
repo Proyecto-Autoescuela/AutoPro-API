@@ -45,9 +45,10 @@ class UnitController extends Controller
         {
             $response['error_msg'] = 'content_unit is required';
         }
-        elseif(!$req->lesson_id)
+        elseif(!$req->id)
         {
             $response['error_msg'] = 'lesson_id is required';
+            // $response = $req;
         }
         else
         {
@@ -56,7 +57,7 @@ class UnitController extends Controller
                 $ruta = $req->file('unit_url')->store('ImagesUnits');
                 $units->unit_url = $ruta;
                 $units->content_unit = $req->input('content_unit');
-                $units->lesson_id = $req->input('lesson_id');
+                $units->lesson_id = $req->input('id');
                 $units->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
             }
@@ -64,7 +65,8 @@ class UnitController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return view('unitViews/addUnitsView');
+        return response()->json($response);
+        // return view('unitViews/addUnitsView');
     }
 
     // Editar temario
