@@ -52,9 +52,10 @@ class LessonController extends Controller
             try{
                 $units->name = $req->input('name');
                 $ruta = $req->file('lesson_url')->store('ImagesLessons');
-                $units->unit_url = $ruta;
+                $units->lesson_url = $ruta;
                 $units->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
+                
             }
             catch(\Exception $e){
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
