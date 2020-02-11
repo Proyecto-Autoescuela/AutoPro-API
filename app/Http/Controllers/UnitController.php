@@ -35,6 +35,15 @@ class UnitController extends Controller
             return view('unitViews/searchUnitsView', ['unit' => $response]);
         else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
     }
+    public function findByLessonID(Request $req)
+    {
+        $id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
+        $response = Unit::where('lesson_id', $id)->get();
+        if(count($response) > 0)
+            return view('unitViews/searchUnitsView', ['unit' => $response]);
+        else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
+    }
 
     // Añadir Temario
     public function addUnit(Request $req)
