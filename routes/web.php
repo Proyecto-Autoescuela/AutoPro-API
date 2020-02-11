@@ -74,11 +74,11 @@ Route::middleware('auth:web')->put('/home/unit/update','UnitController@updateUni
 Route::middleware('auth:web')->delete('/home/unit/delete','UnitController@deleteUnit');
 
 // Rutas funcionalidades Lesson
-Route::middleware('auth:web')->get('/unit', 'LessonController@listAllLesson');
-Route::middleware('auth:web')->get('/unit/{id}', 'LessonController@listByID');
-Route::middleware('auth:web')->post('/unit/add','LessonController@addLesson');
-Route::middleware('auth:web')->put('/unit/update/{id}','UnitController@updateLesson');
-Route::middleware('auth:web')->delete('/unit/delete/{id}','LessonController@deleteLesson');
+Route::middleware('auth:web')->get('/lesson', 'LessonController@listAllLessons');
+Route::middleware('auth:web')->get('/lesson/{id}', 'LessonController@listByID');
+Route::middleware('auth:web')->post('/lesson/add','LessonController@addLesson');
+Route::middleware('auth:web')->put('/lesson/update/{id}','UnitController@updateLesson');
+Route::middleware('auth:web')->delete('/lesson/delete/{id}','LessonController@deleteLesson');
 
 Route::get('prueba', 'TestController@generateTest');
 Route::get('prueba2', 'TestController@listForPass');
