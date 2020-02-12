@@ -39,10 +39,11 @@ class UnitController extends Controller
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Unit::where('lesson_id', $id)->get();
-        if(count($response) > 0)
-            return view('unitViews/searchUnitsView', ['unit' => $response]);
-        else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
+        $response = Unit::where('lesson_id', $id)->get(['name', 'unit_url']);
+        // if(count($response) > 0)
+        //     return view('unitViews/searchUnitsView', ['unit' => $response]);
+        // else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
+        return response()->json($response);
     }
 
     // Añadir Temario
