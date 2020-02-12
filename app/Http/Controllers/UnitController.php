@@ -30,7 +30,7 @@ class UnitController extends Controller
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Unit::where('id', $id)->get();
+        $response = Unit::where('id', $id)->first(['name', 'content_unit']);
         if(count($response) > 0)
             return view('unitViews/searchUnitsView', ['unit' => $response]);
         else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
