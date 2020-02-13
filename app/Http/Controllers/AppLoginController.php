@@ -23,7 +23,7 @@ class AppLoginController extends Controller
         else{
             $teacher = Teacher::where('email', $req->email)->first();
             if(!empty($teacher)){
-                $pass = hash('sha256', $req->password);
+                $pass = Hash::make($req->password);
                 if($teacher->password == $pass){
                     $response = array('error_code' => 200, 'error_msg' => 'Profesor');
                 }

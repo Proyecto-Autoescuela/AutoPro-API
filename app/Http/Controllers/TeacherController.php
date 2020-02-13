@@ -98,7 +98,7 @@ class TeacherController extends Controller
                 try{
                     $teachers->name = $req->input('name');
                     $teachers->email = $req->input('email') ;
-                    $pass = hash('sha256', $req->password);
+                    $pass = Hash::make($req->password);
                     $teachers->password = $pass;
                     $teachers->save();
                     $response = array('error_code' => 200, 'error_msg' => '');

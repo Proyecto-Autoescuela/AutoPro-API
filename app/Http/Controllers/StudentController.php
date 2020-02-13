@@ -72,7 +72,7 @@ class StudentController extends Controller
             try{
                 $students->name = $req->input('name');
                 $students->email = $req->input('email') ;
-                $pass = hash('sha256', $req->password);
+                $pass = Hash::make($req->password);
                 $students->password = $pass;
                 $students->teacher_id = $req->input('teacher_id');
                 $students->license = $req->input('license');
