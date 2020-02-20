@@ -12,7 +12,7 @@ class AppLoginController extends Controller
     public function logingApp(Request $req){
         $student = Student::where('email', $req->email)->first();
         if(!empty($student)){
-            $pass = hash('sha256', $req->password);
+            $pass = Hash::make($req->password);
             if($student->password == $pass){
                 $response = array('error_code' => 200, 'error_msg' => 'Alumno');
             }
