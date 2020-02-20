@@ -12,8 +12,8 @@ class AppLoginController extends Controller
     public function logingApp(Request $req){
         $student = Student::where('email', $req->email)->first();
         if(!empty($student)){
-            $pass = Hash::make($req->password);
-            if($student->password == $pass){
+            $pass = ($req->password);
+            if(Hash::check($pass, $student->password)){
                 $response = array('error_code' => 200, 'error_msg' => 'Alumno');
             }
             else{
@@ -23,8 +23,8 @@ class AppLoginController extends Controller
         else{
             $teacher = Teacher::where('email', $req->email)->first();
             if(!empty($teacher)){
-                $pass = Hash::make($req->password);
-                if($teacher->password == $pass){
+                $pass = $req->password;
+                if(Hash::check($pass, $teacher->password)){
                     $response = array('error_code' => 200, 'error_msg' => 'Profesor');
                 }
                 else{
