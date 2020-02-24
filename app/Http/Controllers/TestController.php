@@ -11,11 +11,11 @@ class TestController extends Controller{
 
     // Listar todos
     public function listAllTest(){
-        $tests = Test::all(['id', 'done', 'calification', 'student_id','lesson_id']);
+        $tests = Test::all(['id', 'done', 'calification', 'student_id','unit_id']);
         if(empty($tests)){
             $tests = array('error_code' => 400, 'error_msg' => 'No hay tests encontrados');
         }else{
-            return response()->json($lessons);
+            return response()->json($tests);
         }
     }
 
@@ -29,9 +29,9 @@ class TestController extends Controller{
 
     // Listar por Unidad
     public function listForLesson(Request $req){
-        $lesson_id = $req->lesson_id;
-        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$lesson_id. ' no encontrado');
-        $response = Test::where('id', $lesson_id)->get();
+        $unit_id = $req->unit_id;
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$unit_id. ' no encontrado');
+        $response = Test::where('id', $unit_id)->get();
         return response()->json($response);
     }
 
@@ -51,9 +51,9 @@ class TestController extends Controller{
 
     // Generador de tests
     public function generateTest(){
-        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','answer_a','answer_b','answer_c','correct_answer','lesson_id']);
+        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','answer_a','answer_b','answer_c','correct_answer','unit_id']);
         
-        if(empty($question)){
+        if(empty($question[0])){
             $response = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
         }else{
             $questions[0] = $question[0];
@@ -83,14 +83,14 @@ class TestController extends Controller{
             }
             elseif(!$req->student_id){
                 $response['error_msg'] = 'student_id is required';
-            }elseif(!$req->lesson_id){
-                $response['error_msg'] = 'lesson_id is required';
+            }elseif(!$req->unit_id){
+                $response['error_msg'] = 'unit_id is required';
             }else{
                 try{
                     $test->done = $req->input('done');
                     $test->calification = $req->input('calification');
                     $test->student_id = $req->input('student_id');
-                    $test->lesson_id = $req->input('lesson_id');
+                    $test->unit_id = $req->input('unit_id');
                     $test->save();
                     $response = array('error_code' => 200, 'error_msg' => '');
                 }

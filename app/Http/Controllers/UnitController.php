@@ -7,42 +7,30 @@ use App\Unit;
 
 class UnitController extends Controller
 {
-    // Listar temas
     public function listAllUnit(){
-        $units = Unit::all(['id', 'name', 'unit_url', 'content_unit', 'lesson_id']);
-        if(empty($units)){
-            $units = array('error_code' => 400, 'error_msg' => 'No hay temas encontrados');
+        $unit = Unit::all(['id', 'name', 'img']);
+        if(empty($unit)){
+            $unit = array('error_code' => 400, 'error_msg' => 'No hay unit encontrados');
         }else{
-            return response()->json($units);
+            return response()->json($unit);
         }
     }
 
-    // Buscar por ID
     public function listByID(Request $req)
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
         $response = Unit::where('id', $id)->get();
-        return response()->json($response);
+        if(count($response) > 0)
+            return view('unitViews/searchUnitsView', ['unit' => $response]);
+        else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
     }
 
     public function findByID(Request $req)
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Unit::where('id', $id)->first(['name', 'content_unit']);
-        if(count($response) > 0)
-            return view('unitViews/searchUnitsView', ['unit' => $response]);
-        else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
-    }
-    public function findByLessonID(Request $req)
-    {
-        $id = $req->id;
-        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = Unit::where('lesson_id', $id)->get(['name', 'unit_url']);
-        // if(count($response) > 0)
-        //     return view('unitViews/searchUnitsView', ['unit' => $response]);
-        // else return view('unitViews/searchUnitsView')->withMessage('No Details found. Try to search again !');
+        $response = Unit::where('id', $id)->first();
         return response()->json($response);
     }
 
@@ -55,29 +43,19 @@ class UnitController extends Controller
         if(!$req->name){
             $response['error_msg'] = 'Name is required';
         }
-        elseif(!$req->unit_url)
+        elseif(!$req->img)
         {
-            $response['error_msg'] = 'unit_url is required';
-        }
-        elseif(!$req->content_unit)
-        {
-            $response['error_msg'] = 'content_unit is required';
-        }
-        elseif(!$req->id)
-        {
-            $response['error_msg'] = 'lesson_id is required';
-            // $response = $req;
+            $response['error_msg'] = 'img is required';
         }
         else
         {
             try{
                 $units->name = $req->input('name');
-                $ruta = $req->file('unit_url')->store('ImagesUnits');
-                $units->unit_url = $ruta;
-                $units->content_unit = $req->input('content_unit');
-                $units->lesson_id = $req->input('id');
+                $ruta = $req->file('img')->store('Imagesunit');
+                $units->img = $ruta;
                 $units->save();
                 $response = array('error_code' => 200, 'error_msg' => '');
+                
             }
             catch(\Exception $e){
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
@@ -101,33 +79,11 @@ class UnitController extends Controller
             }else{
                 $units->name = $req->name;
             }
-            if(empty($req->unit_url)){
-                $dataOk = false;
-                $error_msg = "unit_url can't be empty";
-            }else{
-                $units->unit_url = $req->unit_url;
-            }
-            if(empty($req->content_unit)){
-                $dataOk = false;
-                $error_msg = "content_unit can't be empty";
-            }else{
-                $units->content_unit = $req->content_unit;
-            }
-            if(empty($req->lesson_id)){
-                $dataOk = false;
-                $error_msg = "content_unit can't be empty";
-            }else{
-                $units->lesson_id = $req->lesson_id;
-            }
             if(!$dataOk){
                 $response = array('error_code' => 400, 'error_msg' => $error_msg);
             }else{
                 try{
                     $units->name = $req->input('name');
-                    $ruta = $req->file('unit_url')->store('ImagesUnits');
-                    $units->unit_url = $ruta;
-                    $units->content_unit = $req->input('content_unit');
-                    $units->lesson_id = $req->input('lesson_id');
                     $units->save();
                     $response = array('error_code' => 200, 'error_msg' => '');
                 }catch(\Exception $e){
@@ -154,32 +110,6 @@ class UnitController extends Controller
                 $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
             }
         }
-        return view('unitViews/deleteUnitsView');
-    }
-
-
-     //Vistas ADMIN
-     public function searchUnits(){
-        return view('unitViews/searchUnitsView');
-    }
-
-    public function addUnits()
-    {
-        return view('unitViews/addUnitsView');
-    }
-
-    public function addLessons()
-    {
-        return view('unitViews/addLessonsView');
-    }
-
-    public function modifyUnits()
-    {
-        return view('unitViews/modifyUnitsView');
-    }
-
-    public function deleteUnits()
-    {
         return view('unitViews/deleteUnitsView');
     }
 }

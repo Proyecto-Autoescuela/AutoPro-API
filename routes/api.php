@@ -55,3 +55,4 @@ Route::middleware('auth:api')->delete('/lesson/delete/{id}','LessonController@de
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
 Route::post('prueba/add', 'TestController@saveTest');
+Route::get('prueba', 'TestController@generateTest');
