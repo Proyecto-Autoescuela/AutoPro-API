@@ -56,3 +56,4 @@ Route::middleware('auth:api')->delete('/unit/delete/{id}','UnitController@delete
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
 Route::post('prueba/add', 'TestController@saveTest');
 Route::get('prueba', 'TestController@generateTest');
+Route::get('prueba2/{id}', 'TestController@generateTestUnit');

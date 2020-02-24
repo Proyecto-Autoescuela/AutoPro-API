@@ -51,7 +51,27 @@ class TestController extends Controller{
 
     // Generador de tests
     public function generateTest(){
-        $question = Question::inRandomOrder()->get(['id','photo_url', 'text','answer_a','answer_b','answer_c','correct_answer','unit_id']);
+        $question = Question::inRandomOrder()->get(['photo_url', 'question','answer_a','answer_b','answer_c','correct_answer']);
+        
+        if(empty($question[0])){
+            $response = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
+        }else{
+            $questions[0] = $question[0];
+            for ($i=1; $i <10 ; $i++){
+                if(!empty($question[$i])){
+                    array_push($questions,$question[$i]);
+                } 
+                
+            }
+            $response = $questions;
+            
+        }
+        return response()->json($response);
+    }
+
+    // Generador de tests
+    public function generateTestUnit($id){
+        $question = Question::inRandomOrder()->where('unit_id', $id)->get(['photo_url', 'question','answer_a','answer_b','answer_c','correct_answer']);
         
         if(empty($question[0])){
             $response = array('error_code' => 400, 'error_msg' => 'No hay preguntas encontrados');
