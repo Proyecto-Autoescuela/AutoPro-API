@@ -22,8 +22,8 @@ class CreateQuestionsTable extends Migration
             $table->string('answer_b');
             $table->string('answer_c');
             $table->enum('correct_answer',['answer_a', 'answer_b', 'answer_c']);
-            $table->unsignedBigInteger('lesson_id');
-            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->unsignedBigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('units');
             $table->timestamps();
         });
     }
