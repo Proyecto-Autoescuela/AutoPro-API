@@ -34,7 +34,7 @@ class StudentController extends Controller
         else return view('StudentViews/searchStudentsView')->withMessage('No Details found. Try to search again !');
     }
     // Buscar por nombre
-    public function listByTeacher()
+    public function listByTeacher($id)
     {   
         $response = array('error_code' => 400, 'error_msg' => 'No encontrado');
         $response = Student::where('teacher_id', $teacherId)->get(['id', 'name', 'email', 'teacher_id', 'license']);
