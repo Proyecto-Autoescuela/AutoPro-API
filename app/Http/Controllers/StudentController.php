@@ -33,6 +33,13 @@ class StudentController extends Controller
             return view('StudentViews/searchStudentsView', ['student' => $response]);
         else return view('StudentViews/searchStudentsView')->withMessage('No Details found. Try to search again !');
     }
+    // Buscar por nombre
+    public function listByTeacher()
+    {   
+        $response = array('error_code' => 400, 'error_msg' => 'No encontrado');
+        $response = Student::where('teacher_id', $teacherId)->get(['id', 'name', 'email', 'teacher_id', 'license']);
+        return response()->json($response);
+    }
 
     // Buscar por email
     public function listByMail($email)
