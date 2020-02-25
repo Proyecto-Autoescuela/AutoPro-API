@@ -14,7 +14,7 @@ class AppLoginController extends Controller
         if(!empty($student)){
             $pass = ($req->password);
             if(Hash::check($pass, $student->password)){
-                $response = array('error_code' => 200, 'error_msg' => 'Alumno', 'teacher_id' => $student->teacher_id);
+                $response = array('error_code' => 200, 'error_msg' => 'Alumno');
             }
             else{
                 $response = array('error_code' => 404, 'error_msg' => 'Contraseña erronea');
@@ -25,7 +25,7 @@ class AppLoginController extends Controller
             if(!empty($teacher)){
                 $pass = $req->password;
                 if(Hash::check($pass, $teacher->password)){
-                    $response = array('error_code' => 200, 'error_msg' => 'Profesor');
+                    $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'id' => $teacher->id);
                 }
                 else{
                     $response = array('error_code' => 404, 'error_msg' => 'Contraseña erronea');
