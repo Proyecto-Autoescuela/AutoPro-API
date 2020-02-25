@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //CRUD Estudiantes
 Route::middleware('auth:api')->get('/students','StudentController@listAllStudent');
+Route::middleware('auth:api')->get('/students/teacher/{id}','StudentController@listByTeacher');
 Route::middleware('auth:api')->post('/students/add','StudentController@addStudent');
 Route::middleware('auth:api')->put('/students/update/{id}','StudentController@updateStudent');
 Route::middleware('auth:api')->delete('/students/delete/{id}','StudentController@deleteStudent');
