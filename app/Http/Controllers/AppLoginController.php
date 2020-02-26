@@ -9,25 +9,24 @@ use Illuminate\Http\Request;
 
 class AppLoginController extends Controller
 {
+    
     public function logingApp(Request $req){
-        $students = Student::where('email', $req->email)->first();
-        if(!empty($students)){
+        $student = Student::where('email', $req->email)->first();
+        if(!empty($student)){
             $pass = ($req->password);
-            if(Hash::check($pass, $students->password)){
-                $student = Student::where('email', $req->email)->first(['id', 'name', 'email', 'teacher_id', 'license']);
-                $response = array('error_code' => 200, 'error_msg' => 'Alumno', 'student' => $student);
+            if(Hash::check($pass, $student->password)){
+                $response = array('error_code' => 200, 'error_msg' => 'Alumno', 'id' => $student->id, 'name' => $student->name, 'email' => $student->email, 'license' => $student->license);
             }
             else{
                 $response = array('error_code' => 404, 'error_msg' => 'Contraseña erronea');
             }
         }
         else{
-            $teachers = Teacher::where('email', $req->email)->first();
-            if(!empty($teachers)){
+            $teacher = Teacher::where('email', $req->email)->first(['id', 'name', 'email']);
+            if(!empty($teacher)){
                 $pass = $req->password;
-                if(Hash::check($pass, $teachers->password)){
-                    $teacher = Teacher::where('email', $req->email)->first(['id', 'name', 'email']);
-                    $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'teacher' => $teacher);
+                if(Hash::check($pass, $teacher->password)){
+                    $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'id' => $teacher->id, 'name' => $teacher->name, 'email' => $teacher->email);
                 }
                 else{
                     $response = array('error_code' => 404, 'error_msg' => 'Contraseña erronea');
