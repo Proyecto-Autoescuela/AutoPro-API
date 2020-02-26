@@ -7,7 +7,7 @@ use App\Unit;
 
 class UnitController extends Controller
 {
-    public function listAllUnit(){
+    public function listAllUnits(){
         $unit = Unit::all(['id', 'name', 'img']);
         if(empty($unit)){
             $unit = array('error_code' => 400, 'error_msg' => 'No hay unit encontrados');

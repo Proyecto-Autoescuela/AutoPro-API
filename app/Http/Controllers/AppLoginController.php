@@ -10,10 +10,11 @@ use Illuminate\Http\Request;
 class AppLoginController extends Controller
 {
     public function logingApp(Request $req){
-        $student = Student::where('email', $req->email)->first(['id', 'name', 'email', 'teacher_id', 'license']);
-        if(!empty($student)){
+        $students = Student::where('email', $req->email)->first();
+        if(!empty($students)){
             $pass = ($req->password);
-            if(Hash::check($pass, $student->password)){
+            if(Hash::check($pass, $students->password)){
+                $student = Student::where('email', $req->email)->first(['id', 'name', 'email', 'teacher_id', 'license']);
                 $response = array('error_code' => 200, 'error_msg' => 'Alumno', 'student' => $student);
             }
             else{
@@ -21,10 +22,11 @@ class AppLoginController extends Controller
             }
         }
         else{
-            $teacher = Teacher::where('email', $req->email)->first(['id', 'name', 'email']);
-            if(!empty($teacher)){
+            $teachers = Teacher::where('email', $req->email)->first();
+            if(!empty($teachers)){
                 $pass = $req->password;
-                if(Hash::check($pass, $teacher->password)){
+                if(Hash::check($pass, $teachers->password)){
+                    $teacher = Teacher::where('email', $req->email)->first(['id', 'name', 'email']);
                     $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'teacher' => $teacher);
                 }
                 else{

@@ -39,20 +39,14 @@ Route::middleware('auth:api')->delete('/users/delete/{id}','UserController@delet
 // Login App
 Route::middleware('auth:api')->get('/loginApp','AppLoginController@logingApp');
 
-// CRUD Temas    
+// CRUD UnitContent    
 Route::middleware('auth:api')->get('/unitcontent', 'UnitContentController@listAllUnitContent');
 Route::middleware('auth:api')->get('/unitcontent/{id}', 'UnitContentController@findByID');
 Route::middleware('auth:api')->get('/unitcontent/Unit/{id}', 'UnitContentController@findByUnitID');
-Route::middleware('auth:api')->post('/unitcontent/add','UnitContentController@addUnitContent');
-Route::middleware('auth:api')->put('/unitcontent/update/{id}','UnitContentController@updateUnitContent');
-Route::middleware('auth:api')->delete('/unitcontent/delete/{id}','UnitContentController@deleteUnitContent');
 
 // CRUD Unit
 Route::middleware('auth:api')->get('/unit', 'UnitController@listAllUnits');
 Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@findByID');
-Route::middleware('auth:api')->post('/unit/add','UnitController@addUnit');
-Route::middleware('auth:api')->put('/unit/update/{id}','UnitContentController@updateUnit');
-Route::middleware('auth:api')->delete('/unit/delete/{id}','UnitController@deleteUnit');
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
 Route::post('prueba/add', 'TestController@saveTest');
