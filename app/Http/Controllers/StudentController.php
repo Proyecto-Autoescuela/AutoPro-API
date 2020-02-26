@@ -138,7 +138,7 @@ class StudentController extends Controller
                 try{
                     $students->name = $req->input('name');
                     $students->email = $req->input('email');
-                    $pass = hash('sha256', $req->password);
+                    $pass = Hash::make($req->password);
                     $students->password = $pass;
                     $students->teacher_id = $req->input('teacher_id');
                     $students->license = $req->input('license');
@@ -150,6 +150,37 @@ class StudentController extends Controller
             }
         return view('StudentViews/addStudentsView');
         }
+    }
+
+    //recover pass
+
+    public function recoverPass(Request $req){
+        $student_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$student_id.' no encontrado');
+        $students = Student::find($student_id);
+        if(empty($req->password)){
+            $dataOk = false;
+            $error_msg = "Paswword can't be empty";
+        }else{
+            $students->password = $req->password;
+        }
+        if(!$dataOk){
+            $response = array('error_code' => 400, 'error_msg' => $error_msg);
+        }else{
+            try{
+                $students->name = $students->name;
+                $students->email = $students->email;
+                $pass = Hash::make($req->password);
+                $students->password = $pass;
+                $students->teacher_id = $students->teacher_id;
+                $students->license = $$students->license;
+                $students->save();
+                $response = array('error_code' => 200, 'error_msg' => 'contraseña cambiada');
+            }catch(\Exception $e){
+                $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
+            }
+        }
+        return response()->json($students);
     }
 
     // Borrar estudiante

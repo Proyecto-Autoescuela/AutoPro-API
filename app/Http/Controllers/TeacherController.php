@@ -129,6 +129,33 @@ class TeacherController extends Controller
         return view('teacherViews/deleteTeachersView');
     }
 
+    public function recoverPass(Request $req){
+        $teachers_id = $req->id;
+        $response = array('error_code' => 404, 'error_msg' => 'Estudiante '.$teachers_id.' no encontrado');
+        $teachers = Teacher::find($teachers_id);
+        if(empty($req->password)){
+            $dataOk = false;
+            $error_msg = "Paswword can't be empty";
+        }else{
+            $teachers->password = $req->password;
+        }
+        if(!$dataOk){
+            $response = array('error_code' => 400, 'error_msg' => $error_msg);
+        }else{
+            try{
+                $teachers->name = $teachers->name;
+                $teachers->email = $teachers->email;
+                $pass = Hash::make($req->password);
+                $teachers->password = $pass;
+                $teachers->save();
+                $response = array('error_code' => 200, 'error_msg' => 'contraseña cambiada');
+            }catch(\Exception $e){
+                $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
+            }
+        }
+        return response()->json($teachers);
+    }
+
     //Vistas ADMIN
     public function searchTeachers(){
         return view('teacherViews/searchTeachersView');
