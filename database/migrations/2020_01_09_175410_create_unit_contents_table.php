@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUnitsContentTable extends Migration
+class CreateUnitContentTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateUnitsContentTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('units_content');
-        Schema::create('units_content', function (Blueprint $table) {
+        Schema::dropIfExists('unit_contents');
+        Schema::create('unit_contents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('unit_id');
@@ -32,6 +32,6 @@ class CreateUnitsContentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('units_content');
+        Schema::dropIfExists('units_contents');
     }
 }
