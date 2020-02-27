@@ -16,7 +16,6 @@ class CreateTestsTable extends Migration
         Schema::dropIfExists('tests');
         Schema::create('tests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('done');
             $table->integer('calification');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students');

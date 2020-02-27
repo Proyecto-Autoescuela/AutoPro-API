@@ -22,11 +22,12 @@ class AppLoginController extends Controller
             }
         }
         else{
-            $teacher = Teacher::where('email', $req->email)->first(['id', 'name', 'email']);
+            $teacher = Teacher::where('email', $req->email)->first();
+            $studens = Student::where('teacher_id', $teacher->id)->get();
             if(!empty($teacher)){
                 $pass = $req->password;
                 if(Hash::check($pass, $teacher->password)){
-                    $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'id' => $teacher->id, 'name' => $teacher->name, 'email' => $teacher->email);
+                    $response = array('error_code' => 200, 'error_msg' => 'Profesor', 'id' => $teacher->id, 'name' => $teacher->name, 'email' => $teacher->email, 'number_of_students' => count($studens));
                 }
                 else{
                     $response = array('error_code' => 404, 'error_msg' => 'Contraseña erronea');

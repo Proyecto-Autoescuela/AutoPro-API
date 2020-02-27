@@ -49,6 +49,6 @@ Route::middleware('auth:api')->get('/unit', 'UnitController@listAllUnits');
 Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@findByID');
 // //Filtros AppLoginController
 // Route::middleware('auth:api')->get('/students/{$license}', 'StudentController@listByLicense');
-Route::post('prueba/add', 'TestController@saveTest');
+Route::post('prueba/add/{idStudent}/{idUnit}/{calification}', 'TestController@saveTest');
 Route::get('prueba', 'TestController@generateTest');
 Route::get('prueba2', 'TestController@generateTestUnit');

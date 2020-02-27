@@ -90,24 +90,42 @@ class TestController extends Controller{
     }
 
     // Guardar test hecho
-    public function saveTest(Request $req){
+    public function saveTest($idStudent, $idUnit, $calification){
+        
+        $response = array('error_code' => 400, 'error_msg' => 'No se han enviado datos', 'respuesta' => $idStudent, 'respuestas'=>  $idUnit, 'respuestaa'=>  $calification);
+        
+        $test = new Test;
+        
+        $test->calification = $calification;
+        
+        $test->student_id = $idStudent;
+        $test->unit_id = $idUnit;
+        
+        try{
+            $test->save();
+            $response = array('error_code' => 200, 'error_msg' => '');
+        }
+        catch(\Exception $e){
+            $response = array('error_code' => 500, 'error_msg' => $e->getMessage());
+        }
+        
+        
+        
+        /*
         if(empty($req)){
             $response = array('error_code' => 400, 'error_msg' => 'No se han enviado datos');
         }else{
             $test = new Test;
-            if(!$req->done){
-                $response['error_msg'] = 'done is required';
+            if(empty($req->calification)){
+                //$response['error_msg'] = 'calification is required';
+                $response = array('error_code' => 404, 'error_msg' => '∫', 'response' => $req);
             }
-            elseif(!$req->calification){
-                $response['error_msg'] = 'calification is required';
-            }
-            elseif(!$req->student_id){
+            elseif(empty($req->student_id)){
                 $response['error_msg'] = 'student_id is required';
-            }elseif(!$req->unit_id){
+            }elseif(empty($req->unit_id)){
                 $response['error_msg'] = 'unit_id is required';
             }else{
                 try{
-                    $test->done = $req->input('done');
                     $test->calification = $req->input('calification');
                     $test->student_id = $req->input('student_id');
                     $test->unit_id = $req->input('unit_id');
@@ -119,6 +137,7 @@ class TestController extends Controller{
                 }
             }
         }
+        */
         return response()->json($response);
     }
 
