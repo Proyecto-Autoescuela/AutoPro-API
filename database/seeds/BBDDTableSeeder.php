@@ -147,7 +147,7 @@ class BBDDTableSeeder extends Seeder
             Debe también mantener su libertad de movimientos, el campo de visión necesario y una atención permanente a la conducción. Para ello debe mantener la posición adecuada en el vehículo de pasajeros y objetos transportados.'
         ]);
 
-        DB::table('questions')->insert([
+        DB::table('unit_contents')->insert([
             'name' => 'La zona de incertidumbre',
             'unit_id' => '3',
             'img' => '',
@@ -155,7 +155,7 @@ class BBDDTableSeeder extends Seeder
             Los vehículos también tienen una zona de incertidumbre: en la parte delantera, ya que no pueden detener el vehículo automáticamente, y en la parte trasera para que así el conductor pueda frenar de forma segura. También tienen una zona de incertidumbre lateral y cabe destacar que los ciclistas también tienen su zona de incertidumbre.'
         ]);
 
-        DB::table('questions')->insert([
+        DB::table('unit_contents')->insert([
             'name' => 'Los peatones',
             'unit_id' => '3',
             'img' => '',

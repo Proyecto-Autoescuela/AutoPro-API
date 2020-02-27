@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/loginApp','AppLoginController@logingApp');
 
 // CRUD UnitContent    
 Route::middleware('auth:api')->get('/unitcontent', 'UnitContentController@listAllUnitContent');
-Route::middleware('auth:api')->get('/unitcontent/{id}', 'UnitContentController@findByID');
+Route::middleware('auth:api')->get('/unitcontent/{id}', 'UnitContentController@listByID');
 Route::middleware('auth:api')->get('/unitcontent/Unit/{id}', 'UnitContentController@findByUnitID');
 
 // CRUD Unit

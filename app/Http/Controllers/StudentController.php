@@ -37,7 +37,10 @@ class StudentController extends Controller
     public function listByTeacher($id)
     {   
         $response = array('error_code' => 400, 'error_msg' => 'No encontrado');
-        $response = Student::where('teacher_id', $teacherId)->get(['id', 'name', 'email', 'teacher_id', 'license']);
+        if(!empty($id)){
+          $response = Student::where('teacher_id', $id)->get(['id', 'name', 'email', 'teacher_id', 'license']);  
+        }
+        
         return response()->json($response);
     }
 
