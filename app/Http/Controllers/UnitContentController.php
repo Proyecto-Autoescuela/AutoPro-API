@@ -18,11 +18,11 @@ class UnitContentController extends Controller
     }
 
     // Buscar por ID
-    public function listByID(Request $req)
+    public function listByID($id)
     {
         $id = $req->id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$id. ' no encontrado');
-        $response = UnitContent::where('id', $id)->get();
+        $response = UnitContent::find($id)->get();
         return response()->json($response);
     }
 
