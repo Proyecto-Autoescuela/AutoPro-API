@@ -23,7 +23,25 @@ class TestController extends Controller{
     public function listForStuden(Request $req){
         $student_id = $req->student_id;
         $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$student_id. ' no encontrado');
-        $response = Test::where('id', $student_id)->get();
+        $response = Test::where('student_id', $student_id)->get();
+        return response()->json($response);
+    }
+    public function listForStudens($student_id, $unit_id){
+        $response = array('error_code' => 404, 'error_msg' => 'Nombre ' .$student_id. ' no encontrado');
+        $tests = Test::where('student_id', $student_id)->where('unit_id', $unit_id)->get();
+        $aciertos = 0;
+        $fallos = 0;
+        $porcentaje = 0;
+        $preguntas = count($tests) * 10;
+        $response = $tests;
+        foreach ($tests as $test) {
+            $aciertos = $aciertos + $test->calification;
+            $fallo = 10 - $test->calification;
+            $fallos = $fallos + $fallo;
+            $porcentaje = $aciertos/$preguntas;
+            $porcentaje = $porcentaje*100;
+        }
+        $response = array('error_code' => 200, 'porcentaje de acierto' =>  round($porcentaje, 2). '%');
         return response()->json($response);
     }
 
