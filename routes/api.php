@@ -53,4 +53,4 @@ Route::middleware('auth:api')->get('/unit/{id}', 'UnitController@findByID');
 Route::post('prueba/add/{idStudent}/{idUnit}/{calification}', 'TestController@saveTest');
 Route::get('prueba', 'TestController@generateTest');
 Route::get('prueba2', 'TestController@generateTestUnit');
-Route::get('prue/{idAlumno}/{idUnidad}', 'TestController@listForStudens');
+Route::get('prue/{idAlumno}', 'TestController@porcentajeUnit');
